@@ -2,14 +2,14 @@
 
 const fs = require('fs');
 const path = require('path');
-const { Sequelize } = require('sequelize');
+const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
+const db = {};
 
 const sequelize = new Sequelize('lamby_db', 'jasja', 'ywjh38@s', {
   host: 'localhost',
   dialect: 'postgres',
 });
-
 
 fs
   .readdirSync(__dirname)
@@ -17,7 +17,7 @@ fs
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
   .forEach(file => {
-    var model = sequelize['import'](path.join(__dirname, file));
+    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
     db[model.name] = model;
   });
 
