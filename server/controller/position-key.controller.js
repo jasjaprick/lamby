@@ -1,9 +1,9 @@
-
-const db = require('../model')
+'use strict';
+const db = require('../model');
 
 exports.getPosKey = async (req, res) => {
   try {
-    const posKey = await db.PositionKeys.findAll();
+    const posKey = await db.PositionKey.findAll();
     res.status(200);
     res.send(posKey);
   } catch (error) {
@@ -14,10 +14,10 @@ exports.getPosKey = async (req, res) => {
 }
 
 exports.addPosKey = async (req, res) => {
-  const { pos } = req.body
+  const { pos, type } = req.body
   try {
-    await db.PositionKeys.create({code: pos});
-    console.log(code)
+    await db.PositionKey.create({code: pos, type: type});
+    //console.log(pos)
     res.sendStatus(201);
   } catch (error) {
     res.status(500);

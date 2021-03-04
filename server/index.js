@@ -18,7 +18,7 @@ app.use(router);
 
 (async function () {
 try {
-await db.sequelize.sync();
+await db.sequelize.sync(); // THIS RESETS THE DB!!! REMOVE
 app.listen(PORT, () => {
 console.log(`Server listening at http://localhost:${PORT} 🚀`)
 });

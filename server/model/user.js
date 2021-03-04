@@ -1,12 +1,7 @@
-const { DataTypes } = require('sequelize');
+
 
 module.exports = (sequelize, DataTypes) => {
 const User = sequelize.define('User', {
-  id: {
-    type: DataTypes.UUID,
-    defaultValue: sequelize.UUIDV4,
-    primaryKey: true
-  },
   email: DataTypes.STRING,
   password: DataTypes.STRING,
   firstName: DataTypes.TEXT,
@@ -19,20 +14,21 @@ const User = sequelize.define('User', {
   goals: {
     type: DataTypes.INTEGER,
     defaultValue: 0,
-    allowNull: false
   },
   assists: {
     type: DataTypes.INTEGER,
     defaultValue: 0,
-    allowNull: false
   },
   matches: {
     type: DataTypes.INTEGER,
     defaultValue: 0,
-    allowNull: false
   }
 
 });
+
+User.associate = model => {
+  User.belongsToMany(model.Match, {through: 'MatchPosition', foreignKey: 'userId'})
+}
 
 return User
 }

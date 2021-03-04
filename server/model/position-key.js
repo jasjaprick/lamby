@@ -1,10 +1,16 @@
-module.exports = (sequelize, DataTypes) => sequelize.define('PositionKeys', {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: sequelize.UUIDV4,
-      primaryKey: true
-    },
+module.exports = (sequelize, DataTypes) => {
+  const PositionKey = sequelize.define('PositionKey', {
     code: {
+      type: DataTypes.STRING,
+    },
+    type: {
       type: DataTypes.STRING,
     }
   });
+
+  PositionKey.associate = model => {
+    PositionKey.belongsToMany(model.Match, { through: 'MatchPosition', foreignKey: 'positionKeyId' })
+  }
+
+  return PositionKey;
+}
