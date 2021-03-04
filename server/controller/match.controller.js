@@ -18,7 +18,7 @@ exports.addMatch = async (req, res) => {
   try {
     const match = await db.Match.create({ date, venue});
     console.log(match.addUser)
-    await match.addUser(1);
+    // await match.addUser(1);
     res.sendStatus(201)
   } catch (error) {
     res.status(500);

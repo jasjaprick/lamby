@@ -1,5 +1,4 @@
 
-
 module.exports = (sequelize, DataTypes) => {
 const User = sequelize.define('User', {
   email: DataTypes.STRING,
@@ -27,7 +26,7 @@ const User = sequelize.define('User', {
 });
 
 User.associate = model => {
-  User.belongsToMany(model.Match, {through: 'MatchPosition', foreignKey: 'userId'})
+  User.belongsToMany(model.Match, {through: model.MatchPosition, foreignKey: 'userId'})
 }
 
 return User
