@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     position: DataTypes.TEXT,
     instruction: DataTypes.STRING,
     instructionClass: DataTypes.TEXT
-  }, { timestamps: false });
+  }, { timestamps: false })
 
-  return MatchPosition;
+  return MatchPosition
 }

@@ -1,4 +1,3 @@
-const MatchPosition = require('./match-position');
 
 module.exports = (sequelize, DataTypes) => {
   const Match = sequelize.define('Match', {
@@ -8,13 +7,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     date: DataTypes.DATE,
     venue: DataTypes.STRING
-  });
+  })
 
   Match.associate = model => {
-
     Match.belongsToMany(model.User, { through: model.MatchPosition, foreignKey: 'matchId' })
   }
 
-  return Match;
+  return Match
 }
-
