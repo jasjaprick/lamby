@@ -3,8 +3,7 @@ const db = require("../model");
 exports.addMatchPosition = async (req, res) => {
   const { id, position, instruction, instructionClass } = req.body;
   try {
-    const match = await db.Match.findByPk(id);
-    const user = await db.Match.findByPk(id);
+    const match = await db.Match.findByPk(1);
     await match.addUser(id, { through: { position, instruction, instructionClass } });
     res.sendStatus(201);
   } catch (error) {

@@ -15,5 +15,14 @@
   "bugs": {
     "url": "https://github.com/gridwork-nl/lamby/issues"
   },
-  "homepage": "https://github.com/gridwork-nl/lamby#readme"
+  "homepage": "https://github.com/gridwork-nl/lamby#readme",
+  "dependencies": {
+    "node-sass": "^5.0.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.16.1",
+    "@typescript-eslint/parser": "^4.16.1",
+    "eslint": "^7.21.0",
+    "eslint-plugin-react": "^7.22.0"
+  }
 }
