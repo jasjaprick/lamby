@@ -1,6 +1,6 @@
 'use strict'
 const db = require('../model')
-const { Op } = require("sequelize");
+const { Op } = require('sequelize')
 
 exports.getMatches = async (req, res) => {
   try {
@@ -16,11 +16,15 @@ exports.getMatches = async (req, res) => {
 
 exports.getNextMatch = async (req, res) => {
   try {
-    const nextMatch = await db.Match.findAll({where: {
-      date: {[Op.gte]: Date()}, 
-    }, limit: 1, order: ["date"]});
-    res.status(200);
-    res.send(nextMatch[0]);
+    const nextMatch = await db.Match.findAll({
+      where: {
+        date: { [Op.gte]: Date() }
+      },
+      limit: 1,
+      order: ['date']
+    })
+    res.status(200)
+    res.send(nextMatch[0])
   } catch (error) {
     console.log(error)
     res.status(500)
@@ -31,7 +35,7 @@ exports.getNextMatch = async (req, res) => {
 exports.addMatch = async (req, res) => {
   const { awayTeam, date, venue } = req.body
   try {
-    const match = await db.Match.create({ awayTeam, date, venue })
+    await db.Match.create({ awayTeam, date, venue })
     res.sendStatus(201)
   } catch (error) {
     res.status(500)

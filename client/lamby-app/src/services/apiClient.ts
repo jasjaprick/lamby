@@ -1,8 +1,8 @@
-import { Match } from '../interfaces/interfaces';
+import { IMatch } from '../interfaces/interfaces';
 const base_url: string = 'http://localhost:3001'; 
 
 
-function getMatch (): Promise<Match>{
+function getMatch (): Promise<IMatch>{
   return fetchRequest('/next-match');
 }
 

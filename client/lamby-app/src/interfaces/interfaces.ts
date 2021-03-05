@@ -1,5 +1,5 @@
 
-export interface Match {
+export interface IMatch {
   homeTeam: string
   awayTeam: string
   formation: string
@@ -15,5 +15,5 @@ export interface ITimeLeft {
 }
 
 export interface IMatchProp {
-  match: Match;
+  match: IMatch;
 }

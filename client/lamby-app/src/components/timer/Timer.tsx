@@ -1,7 +1,7 @@
 import { useState, useEffect} from 'react';
 import { ITimeLeft, IMatchProp } from '../../interfaces/interfaces'
 
-export const Timer: React.FC<IMatchProp> = ({match}) => {
+const Timer: React.FC<IMatchProp> = ({match}) => {
 const [timeLeft, setTimeLeft] = useState<ITimeLeft>(countDownTimer());
 
 useEffect(() => {
@@ -53,3 +53,5 @@ function countDownTimer(): ITimeLeft {
     </div>
   );
 }
+
+export default Timer
