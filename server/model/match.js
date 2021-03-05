@@ -1,6 +1,11 @@
 
 module.exports = (sequelize, DataTypes) => {
   const Match = sequelize.define('Match', {
+    homeTeam: {
+      type: DataTypes.STRING,
+      defaultValue: "Lokomotiv Amby III"
+    },
+    awayTeam: DataTypes.STRING,
     formation: {
       type: DataTypes.STRING,
       defaultValue: '4-3-3'

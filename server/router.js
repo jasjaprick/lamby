@@ -8,6 +8,8 @@ const matchPositionController = require('./controller/match-position.controller'
 router.get('/match', matchController.getMatches)
 router.post('/match', matchController.addMatch)
 
+router.get('/next-match', matchController.getNextMatch)
+
 // USER
 router.get('/user', userController.getUsers)
 router.post('/user', userController.addUser)
