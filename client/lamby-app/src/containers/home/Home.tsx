@@ -1,8 +1,8 @@
 import React from 'react'
 import Timer from '../../components/timer/Timer'
-import { IMatchProp } from '../../interfaces/interfaces';
+import { IMatchProp } from '../../interfaces/interfaces'
 
-const Home: React.FC<IMatchProp> = ({match}) => {
+const Home: React.FC<IMatchProp> = ({ match }) => {
   return (
     <div>
       <h1>{match.homeTeam}</h1>
@@ -11,7 +11,7 @@ const Home: React.FC<IMatchProp> = ({match}) => {
       <h4>{match.venue}</h4>
       {match && <Timer match={match} />}
     </div>
-  );
+  )
 }
 
 export default Home

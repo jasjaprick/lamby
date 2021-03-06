@@ -15,5 +15,5 @@ export interface ITimeLeft {
 }
 
 export interface IMatchProp {
-  match: IMatch;
+  match: IMatch
 }

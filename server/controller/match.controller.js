@@ -1,4 +1,4 @@
-'use strict'
+
 const db = require('../model')
 const { Op } = require('sequelize')
 
@@ -18,7 +18,7 @@ exports.getNextMatch = async (req, res) => {
   try {
     const nextMatch = await db.Match.findAll({
       where: {
-        date: { [Op.gte]: Date() }
+        date: { [Op.gte]: new Date() }
       },
       limit: 1,
       order: ['date']

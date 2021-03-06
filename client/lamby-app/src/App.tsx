@@ -1,38 +1,34 @@
-import { useState, useEffect } from 'react';
-import { IMatch } from './interfaces/interfaces';
-import './App.scss';
-import { api } from './services/apiClient';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-import Home from './containers/home/Home';
-import Match from './containers/match/Match';
+import { useState, useEffect } from 'react'
+import { IMatch } from './interfaces/interfaces'
+import './App.scss'
+import { api } from './services/apiClient'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import Home from './containers/home/Home'
+import Match from './containers/match/Match'
 
-
-function App() {
+function App () {
   const [match, setMatch] = useState<IMatch>({
     homeTeam: '',
     awayTeam: '',
     formation: '',
     date: '',
-    venue: '',
-  });
-  
+    venue: ''
+  })
+
+  console.log(match)
+
   useEffect(() => {
-    async function getNextMatch(): Promise<void> {
-      const result: IMatch = await api.getMatch();
-      setMatch(result);
+    async function getNextMatch (): Promise<void> {
+      const result: IMatch = await api.getMatch()
+      setMatch(result)
     }
 
-    getNextMatch();
-  }, []);
-  
+    getNextMatch()
+  }, [])
+
   return (
-    <Router>
-      <div className='App'>
+    <div className='App'>
+      <Router>
         <nav>
           <ul>
             <li>
@@ -48,19 +44,16 @@ function App() {
         </nav>
 
         <Switch>
+          <Route path='/match'>
+            <Match />
+          </Route>
           <Route path='/'>
             <Home match={match} />
           </Route>
-          <Route path='/match' component={Match} >
-            <Match />
-          </Route>
-          <Route path='/profile'>
-            <h1>Profile</h1>
-          </Route>
         </Switch>
-      </div>
-    </Router>
-  );
+      </Router>
+    </div>
+  )
 }
 
-export default App;
+export default App
