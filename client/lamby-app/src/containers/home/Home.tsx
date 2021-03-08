@@ -1,27 +1,20 @@
 import { useContext, useEffect } from 'react'
 import Timer from '../../components/timer/Timer'
-import {MatchContext} from '../../context/match/matchContext'
-import { IMatch } from '../../interfaces/interfaces'
-import {api } from '../../services/apiClient'
+import { AppStateContext } from '../../context/AppContext'
 
 const Home: React.FC = () => {
-  const matchContext = useContext(MatchContext)
-
-  
-
-  console.log(matchContext)
+  const { data } = useContext(AppStateContext)
+  const match = data.match
 
   return (
     <div>
-      {/* <h1>{matchContext.state[0].homeTeam}</h1>
+      <h1>{match.homeTeam}</h1>
       <h4>vs</h4>
-      <h1>{matchContext.state[0].awayTeam}</h1>
-      <h4>{matchContext.state[0].venue}</h4> */}
-      {/* {matchContext && <Timer  />} */}
+      <h1>{match.awayTeam}</h1>
+      <h4>{match.venue}</h4>
+      {match && <Timer />}
     </div>
-  );
+  )
 }
-
-
 
 export default Home

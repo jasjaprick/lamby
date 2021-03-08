@@ -1,18 +1,14 @@
-import { useState, useEffect } from 'react'
-import { ITimeLeft, IMatchProp } from '../../interfaces/interfaces'
+import { useState, useEffect, useContext } from 'react'
+import { ITimeLeft } from '../../interfaces/interfaces'
+import { AppStateContext } from '../../context/AppContext'
 
-const Timer: React.FC<IMatchProp> = ({ match }) => {
-  const [timeLeft, setTimeLeft] = useState<ITimeLeft>(countDownTimer())
+const Timer: React.FC = () => {
+// Context Hook
+  const { data } = useContext(AppStateContext)
+  const match = data.match
 
-  useEffect(() => {
-    let isMounted = true
-    setTimeout(() => {
-      if (isMounted) setTimeLeft(countDownTimer())
-    }, 1000)
-    return () => { isMounted = false }
-  })
-
-  function countDownTimer (): ITimeLeft {
+  // Function to get the values for the timer
+  const countDownTimer = (): ITimeLeft => {
     const matchTime: number = new Date(match.date).getTime()
     const now: number = new Date().getTime()
     const diff: number = matchTime - now
@@ -22,7 +18,6 @@ const Timer: React.FC<IMatchProp> = ({ match }) => {
       minutes: 0,
       seconds: 0
     }
-
     if (diff > 0) {
       timeLeft = {
         days: Math.floor(diff / (1000 * 60 * 60 * 24)),
@@ -33,6 +28,17 @@ const Timer: React.FC<IMatchProp> = ({ match }) => {
     }
     return timeLeft
   }
+
+  // update the time left values to use in de
+  const [timeLeft, setTimeLeft] = useState<ITimeLeft>(countDownTimer())
+
+  useEffect(() => {
+    let isMounted = true
+    setTimeout(() => {
+      if (isMounted) setTimeLeft(countDownTimer())
+    }, 1000)
+    return () => { isMounted = false }
+  })
 
   return (
     <div>

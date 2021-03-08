@@ -6,30 +6,28 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import Home from './containers/home/Home'
 import Match from './containers/match/Match'
 import Profile from './containers/profile/Profile'
-import {MatchProvider} from './context/match/matchContext'
+import AppStateProvider from './context/AppState'
 
 function App () {
-  const [match, setMatch] = useState<IMatch>({
-    homeTeam: '',
-    awayTeam: '',
-    formation: '',
-    date: '',
-    venue: ''
-  })
+  // const [match, setMatch] = useState<IMatch>({
+  //   homeTeam: '',
+  //   awayTeam: '',
+  //   formation: '',
+  //   date: '',
+  //   venue: ''
+  // })
 
-  console.log(match)
+  // useEffect(() => {
+  //   async function getNextMatch (): Promise<void> {
+  //     const result: IMatch = await api.getMatch()
+  //     setMatch(result)
+  //   }
 
-  useEffect(() => {
-    async function getNextMatch (): Promise<void> {
-      const result: IMatch = await api.getMatch()
-      setMatch(result)
-    }
-
-    getNextMatch()
-  }, [])
+  //   getNextMatch()
+  // }, [])
 
   return (
-    <MatchProvider>
+    <AppStateProvider>
       <div className='App'>
         <Router>
           <nav>
@@ -54,13 +52,13 @@ function App () {
               <Profile />
             </Route>
             <Route path='/'>
-              <Home/>
+              <Home />
             </Route>
           </Switch>
         </Router>
       </div>
-    </MatchProvider>
-  );
+    </AppStateProvider>
+  )
 }
 
 export default App
