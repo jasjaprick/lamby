@@ -2,32 +2,45 @@ import { createContext } from 'react'
 import {
   IUpdatePositionAction,
   IAppStateValue,
-  IRefreshMatchAction
+  IRefreshMatchAction,
+  IRefreshPlayersAction
 } from '../interfaces/interfaces'
 
-export const defaultStateValue = {
+export const defaultStateValue: IAppStateValue = {
   data: {
     match: {
+      id: 0,
       homeTeam: '',
       awayTeam: '',
       formation: '',
       date: '',
-      venue: ''
+      venue: '',
     },
     positions: [
       {
         position: '',
         instruction: '',
-        instructionClass: '',
         matchId: 0,
-        userId: 0
-      }
-    ]
-  }
-}
+        userId: 0,
+      },
+    ],
+    players: [
+      {
+        id: 0,
+        firstName: '',
+        lastName: '',
+        playerNumber: 0,
+        goals: 0,
+        assists: 0,
+        matches: 0,
+        defaultPosition: ''
+      },
+    ],
+  },
+};
 
 export const AppStateContext = createContext<IAppStateValue>(defaultStateValue)
 
 export const AppDispatchContext = createContext<
-React.Dispatch<IUpdatePositionAction | IRefreshMatchAction> | undefined
+React.Dispatch<IUpdatePositionAction | IRefreshMatchAction | IRefreshPlayersAction> | undefined
 >(undefined)

@@ -1,12 +1,13 @@
 'use strict'
 
 const fs = require('fs')
+const { dbUser, dbPass } = require('../config')
 const path = require('path')
 const { Sequelize } = require('sequelize')
 const basename = path.basename(__filename)
 const db = {}
 
-const sequelize = new Sequelize('lamby_db', 'jasja', 'ywjh38@s', {
+const sequelize = new Sequelize('lamby_db', dbUser, dbPass, {
   host: 'localhost',
   dialect: 'postgres'
 })

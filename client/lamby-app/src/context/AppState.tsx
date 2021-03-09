@@ -1,7 +1,17 @@
-import { useReducer, useEffect } from 'react'
+import { useReducer, useEffect, useContext } from 'react'
 import { AppStateContext, AppDispatchContext, defaultStateValue } from './AppContext'
 import { reducer } from './reducer'
 import { api } from '../services/apiClient'
+
+export const useStateDispatch = () => {
+  const dispatch = useContext(AppDispatchContext);
+  if (!dispatch) {
+    throw new Error(
+      'useStateDispatch was called outside of the AppDispatchContext provider'
+    );
+  }
+  return dispatch;
+};
 
 const AppStateProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, defaultStateValue)
@@ -15,10 +25,21 @@ const AppStateProvider: React.FC = ({ children }) => {
           match: result
         }
       })
+      const matchPositions = await api.getMatchPositions()
+      dispatch({
+        type: 'REFRESH_POSITIONS',
+        payload: {
+          positions: matchPositions
+        }
+
+      })
+
     }
 
     getNextMatch()
   }, [])
+
+  
 
   return (
     <AppStateContext.Provider value={state}>

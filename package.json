@@ -16,7 +16,9 @@
     "url": "https://github.com/gridwork-nl/lamby/issues"
   },
   "homepage": "https://github.com/gridwork-nl/lamby#readme",
-  "dependencies": {},
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  },
   "devDependencies": {
     "husky": "^5.1.3",
     "standard": "^16.0.3"

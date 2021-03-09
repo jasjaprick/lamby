@@ -2,10 +2,10 @@
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     email: DataTypes.STRING,
-    password: DataTypes.STRING,
     firstName: DataTypes.TEXT,
     lastName: DataTypes.TEXT,
     playerNumber: DataTypes.INTEGER,
+    defaultPosition: DataTypes.TEXT,
     userType: {
       type: DataTypes.TEXT,
       defaultValue: 'PLAYER'
@@ -22,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       defaultValue: 0
     }
-
   })
 
   User.associate = model => {

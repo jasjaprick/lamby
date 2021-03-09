@@ -1,30 +1,12 @@
-import { useState, useEffect } from 'react'
-import { IMatch } from './interfaces/interfaces'
 import './App.scss'
-import { api } from './services/apiClient'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import Home from './containers/home/Home'
 import Match from './containers/match/Match'
 import Profile from './containers/profile/Profile'
 import AppStateProvider from './context/AppState'
+import MatchEditor from './components/matchEditor/matchEditor'
 
 function App () {
-  // const [match, setMatch] = useState<IMatch>({
-  //   homeTeam: '',
-  //   awayTeam: '',
-  //   formation: '',
-  //   date: '',
-  //   venue: ''
-  // })
-
-  // useEffect(() => {
-  //   async function getNextMatch (): Promise<void> {
-  //     const result: IMatch = await api.getMatch()
-  //     setMatch(result)
-  //   }
-
-  //   getNextMatch()
-  // }, [])
 
   return (
     <AppStateProvider>
@@ -51,6 +33,9 @@ function App () {
             <Route path='/profile'>
               <Profile />
             </Route>
+            <Route path='/match/edit'>
+              <MatchEditor />
+            </Route>
             <Route path='/'>
               <Home />
             </Route>
@@ -58,7 +43,7 @@ function App () {
         </Router>
       </div>
     </AppStateProvider>
-  )
+  );
 }
 
 export default App

@@ -7,16 +7,15 @@ const matchPositionController = require('./controller/match-position.controller'
 // MATCH
 router.get('/match', matchController.getMatches)
 router.post('/match', matchController.addMatch)
-
 router.get('/next-match', matchController.getNextMatch)
 
 // USER
-router.get('/user', userController.getUsers)
+router.get('/user', userController.getPlayers)
+router.get('/current-user', userController.getCurrentUser)
 router.post('/user', userController.addUser)
 router.delete('/user', userController.deleteUser)
 
-router.post('/grail', matchPositionController.addMatchPosition)
-router.get('/grail', matchPositionController.getMatchPositions)
-router.put('/grail', matchPositionController.updatePlayerPosition)
+router.post('/positions', matchPositionController.addMatchPosition)
+router.get('/positions', matchPositionController.getMatchPositions)
 
 module.exports = router

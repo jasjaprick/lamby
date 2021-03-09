@@ -1,9 +1,9 @@
 'use strict'
 const db = require('../model')
 
-exports.getUsers = async (req, res) => {
+exports.getPlayers = async (req, res) => {
   try {
-    const user = await db.User.findAll()
+    const user = await db.User.findAll({ where: { userType: 'PLAYER' } })
     res.status(200)
     res.send(user)
   } catch (error) {
@@ -13,9 +13,9 @@ exports.getUsers = async (req, res) => {
 }
 
 exports.addUser = async (req, res) => {
-  const { email, password, firstName, lastName, playerNumber } = req.body
+  const { email, password, firstName, lastName, playerNumber, userType, defaultPosition } = req.body
   try {
-    db.User.create({ email, password, firstName, lastName, playerNumber })
+    db.User.create({ email, password, firstName, lastName, playerNumber, userType, defaultPosition })
     res.sendStatus(201)
   } catch (error) {
     res.status(500)
@@ -32,6 +32,17 @@ exports.deleteUser = async (req, res) => {
         id
       }
     })
+  } catch (error) {
+    res.status(500)
+    res.send(error)
+  }
+}
+
+exports.getCurrentUser = async (req, res) => {
+  try {
+    const user = await db.User.findByPk(1)
+    res.status(200)
+    res.send(user)
   } catch (error) {
     res.status(500)
     res.send(error)
