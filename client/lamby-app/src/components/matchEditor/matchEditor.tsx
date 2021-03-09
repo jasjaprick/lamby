@@ -1,33 +1,24 @@
-import React, { useContext, useState } from 'react';
-import './matchEditor.scss';
+import React, { useContext, useState, useEffect } from 'react';
+import './MatchEditor.scss';
 import { Link } from 'react-router-dom';
-import { ICode, IPosition, IPlayer } from '../../interfaces/interfaces';
+import { ICode, IPosition } from '../../interfaces/interfaces';
 import { AppStateContext } from '../../context/AppContext';
 import { api } from '../../services/apiClient';
 import { useStateDispatch } from '../../context/AppState';
 
-
 const MatchEditor: React.FC = () => {
   const { data } = useContext(AppStateContext);
   const [position, setPosition] = useState('GK');
-  const [player, setPlayer] = useState(1);
-  const [count, setCount] = useState(0);
+  const [playerId, setPlayerId] = useState(1);
+  const [fade, setFade] = useState(true);
+  const [count, setCount] = useState(1);
   const [finalInstruction, setFinalInstruction] = useState('gk-sb');
   const [instructions, setInstruction] = useState([
     { code: 'gk-sb', content: 'Goal keeper stay back' },
     { code: 'gk-jp', content: 'Goal keeper join play' },
   ]);
   const dispatch = useStateDispatch();
-  let counter = 0;
-
-
-  // DATA VARS
-  const players: IPlayer[] = data.players;
-  const matchId: number = data.match.id;
-  const matchPlayers = data.positions;
-
-
-
+  const { players, match} = data
   const positionCodes: ICode[] = [
     { code: 'GK', content: 'Goalkeeper' },
     { code: 'LB', content: 'Left Back' },
@@ -39,32 +30,81 @@ const MatchEditor: React.FC = () => {
     { code: 'CAM', content: 'Central Attacking Mid' },
     { code: 'LW', content: 'Left Winger' },
     { code: 'ST', content: 'Striker' },
-    { code: 'RW', content: 'Right Winger' }
+    { code: 'RW', content: 'Right Winger' },
   ];
+
+  const getCurrentPosition = () => {
+    return positionCodes.filter((pos) => pos.code === position);
+  };
+  const currentPos: any[] = getCurrentPosition();
 
   const instructionSelector = (position: string): ICode => {
     let instructions;
     switch (position) {
       case 'GK':
         instructions = [
-          { code: 'gk-sb', content: 'Stay back' },
-          { code: 'gk-jp', content: 'Join play' },
+          { code: 'gk gk-sb', content: 'Stay back' },
+          { code: 'gk gk-jp', content: 'Join play' },
         ];
         break;
       case 'LCB':
+        instructions = [
+          { code: 'lcb lcb-sb', content: 'Stay back' },
+          { code: 'lcb lcb-ja', content: 'Join attack' },
+        ];
+        break;
       case 'RCB':
         instructions = [
-          { code: 'cb-ot', content: 'Offside trap' },
-          { code: 'cb-sb', content: 'Stay back' },
-          { code: 'cb-ja', content: 'Join attack' },
+          { code: 'rcb rcb-sb', content: 'Stay back' },
+          { code: 'rcb rcb-ja', content: 'Join attack' },
         ];
         break;
       case 'LB':
+         instructions = [
+          { code: 'lb lb-sb', content: 'Cut inside' },
+          { code: 'lb lb-ja', content: 'Give crosses' },
+        ];
+        break;
       case 'RB':
         instructions = [
-          { code: 'lrb-ot', content: 'Offside trap' },
-          { code: 'lrb-sb', content: 'Stay Back' },
-          { code: 'lrb-ja', content: 'Join attack' },
+          { code: 'rb rb-ot', content: 'Cut inside' },
+          { code: 'rb rb-sb', content: 'Give crosses' },
+        ];
+        break;
+      case 'LDM':
+        instructions = [
+          { code: 'ldm ldm-ot', content: 'Cover center' },
+          { code: 'ldm ldm-sb', content: 'Cover wing' },
+        ];
+        break;
+      case 'RDM':
+        instructions = [
+          { code: 'rdm rdm-ot', content: 'Cover center' },
+          { code: 'rdm rdm-sb', content: 'Cover wing' },
+        ];
+        break;
+      case 'CAM':
+        instructions = [
+          { code: 'cam cam-ot', content: 'Free roam' },
+          { code: 'cam cam-sb', content: 'Stay Back' },
+        ];
+        break;
+      case 'LW':
+        instructions = [
+          { code: 'lw lw-ci', content: 'Cut inside' },
+          { code: 'lw lw-sw', content: 'Stay wide' },
+        ];
+        break;
+      case 'RW':
+        instructions = [
+          { code: 'rw rw-ot', content: 'Cut inside' },
+          { code: 'rw rw-sb', content: 'Give crosses' },
+        ];
+        break;
+      case 'ST':
+        instructions = [
+          { code: 'st st-ot', content: "False 9" },
+          { code: 'st st-sb', content: "Give crosses" },
         ];
         break;
     }
@@ -95,123 +135,119 @@ const MatchEditor: React.FC = () => {
     );
   }
 
-  const positionOptions: JSX.Element[] = [];
 
-  for (const positionCode of positionCodes) {
-    positionOptions.push(
-      <option key={positionCode.code} value={positionCode.code}>
-        {positionCode.content}
-      </option>
-    );
-  }
-  // END OF OPTIONS INSTANTIATION
-
-  // CHANGE/SUBMIT HANDLERS
-  const handlePositionChange = (e) => {
-    const newPos = instructionSelector(e.target.value);
-    setPosition(e.target.value);
-    setFinalInstruction(newPos.code);
-    console.log(finalInstruction);
-  };
 
   const positionChange = (num) => {
     const pos = positionCodes[num];
     const newPos = instructionSelector(pos.code);
     setPosition(pos.code);
     setFinalInstruction(newPos.code);
-  }
+  };
 
   const oneUp = () => {
-        if (count === 11) setCount(0);
-        else setCount(count + 1);
-        console.log(count);
-        positionChange(count);
-  }
+    setFade(true);
+    if (count === 10) setCount(0);
+    else setCount(count + 1);
+    positionChange(count);
+  };
 
   const oneDown = () => {
-    if (count === 0) setCount(11)
-    else setCount(count-1) 
-    console.log(count)
-    positionChange(count)
-  }
+    setFade(true);
+    if (count === 0) setCount(10);
+    else setCount(count - 1);
+    positionChange(count);
+  };
 
   const handlePlayerChange = (e) => {
-    setPlayer(e.target.value);
+    setPlayerId(e.target.value);
   };
 
   const handleInstructionChange = (e) => {
     setFinalInstruction(e.target.value);
-    console.log(finalInstruction);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const matchPosition: IPosition = {
-      matchId: matchId,
-      userId: player,
+      matchId: match.id,
+      userId: playerId,
       position: position,
       instruction: finalInstruction,
     };
-        api.postMatchPosition(matchPosition)
-        dispatch({
-          type: 'UPDATE_POSITION',
-          payload: {
-            position: matchPosition
-          },
-        });
-        console.log(matchPlayers)
-      } 
-    
-    
+    api.postMatchPosition(matchPosition);
+    dispatch({
+      type: 'UPDATE_POSITION',
+      payload: {
+        position: matchPosition,
+      },
+    });
+    oneUp();
+  };
+
+ useEffect(() => {
+    const animation = document.querySelector('.selector__content--inner');
+
+    animation.addEventListener('animationend', () => {
+      setFade(false);
+    })
+ }, [])
+
   // END OF CHANGE/SUBMIT HANDLERS
 
   return (
     <div>
-      <div>
-        <div>
-          <Link to='/match'>Back</Link>
-          <h1>Edit Match</h1>
-        </div>
-        <div>
-          <button onClick={oneDown}> prev</button>
-          <div>
-            <p>Goalkeeper</p>
-            <p>Name</p>
+      <header className='header'>
+        <Link to='/match' className='back'>
+          <img src='/img/chevron-left.svg' alt='back' />
+        </Link>
+        <h1>Edit Match</h1>
+      </header>
+      <div className='center-div center-div__editor'>
+        <div className='selector__div'>
+          <button onClick={oneDown} className='position-btn'>
+            {' '}
+            <img src='/img/chevron-left.svg' alt='previous' />
+          </button>
+          <div className='selector__content'>
+            <h1 className={fade ? 'selector__content--inner' : ''}>
+              {currentPos[0].content}
+            </h1>
           </div>
-          <button onClick={oneUp}> next</button>
+          <button onClick={oneUp} className='position-btn'>
+            {' '}
+            <img src='/img/chevron-right.svg' alt='next' />
+          </button>
         </div>
-        <form id='match-form' onSubmit={handleSubmit}>
-          <label htmlFor='position'>Position: </label>
-          <select
-            name='position'
-            id='position'
-            onChange={handlePositionChange}
-            value={position}
-          >
-            {positionOptions}
-          </select>
+
+        <form id='match-form' className='player-form' onSubmit={handleSubmit}>
+          <div className='select-wrapper'>
+            <label htmlFor='player'>Player: </label>
+            <br></br>
+            <select
+              name='player'
+              id='players'
+              onChange={handlePlayerChange}
+              value={playerId}
+            >
+              {playerOptions}
+            </select>
+          </div>
+          <div className='select-wrap'>
+            <label htmlFor='instruction'>Instruction: </label>
+            <br></br>
+            <select
+              name='instruction'
+              id='instruction'
+              onChange={handleInstructionChange}
+              value={finalInstruction}
+            >
+              {instructionOptions}
+            </select>
+          </div>
           <br />
-          <label htmlFor='player'>Player: </label>
-          <select
-            name='player'
-            id='players'
-            onChange={handlePlayerChange}
-            value={player}
-          >
-            {playerOptions}
-          </select>
-          <br />
-          <label htmlFor='instruction'>Instruction: </label>
-          <select
-            name='instruction'
-            id='instruction'
-            onChange={handleInstructionChange}
-            value={finalInstruction}
-          >
-            {instructionOptions}
-          </select>
-          <br />
-          <button type='submit'>SAVE</button>
+          <button className='btn hide-btn' type='submit'>
+            SAVE
+          </button>
         </form>
       </div>
     </div>

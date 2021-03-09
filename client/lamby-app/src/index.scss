@@ -1,13 +1,165 @@
+// Variables
+$darkBlue: #292e42;
+$mediumBlue: #383f56;
+$lightGrey: #e2e2e2;
+$orange: #FA541F;
+
+// Global Styles
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: $mediumBlue;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+  font-style: italic;
+  font-size: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.06em;
+  margin: 0;
+  color: #fff;
+}
+
+p,
+h4,
+h5,
+h6,
+span {
+  color: $lightGrey;
+  text-transform: uppercase;
+}
+
+#root {
+  height: 100%;
+}
+
+.header {
+  width: 100vw;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $darkBlue;
+  box-shadow: 0px 4px 15px 3px #131726;
+}
+
+.btn {
+  padding: 10px 50px;
+  background: $orange;
+  color: #fff;
+  text-decoration: none;
+  text-transform: none;
+  margin-top: 30px;
+  display: block;
+  width: 100%;
+  border: 1px solid #FA541F;
+  transition: 0.3s ease all;
+  cursor: pointer;
+
+  &:hover{
+    background: $darkBlue;
+    color: $orange;
+  }
+}
+
+
+//Animations
+@keyframes fadeInLeft {
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.center-div {
+  text-align: center;
+  width: fit-content;
+  margin: 10% auto 0 auto;
+  transition: 0.3s ease all;
+  animation: fadeInLeft 0.3s forwards;
+}
+
+// Text
+.text-center {
+  text-align: center;
+}
+
+// Margin & padding classes
+$spaceamounts: (1, 2, 3, 4, 5, 6);
+
+@each $space in $spaceamounts {
+ .m-#{$space} {
+  margin: #{$space}rem;
+ }
+
+ .my-#{$space} {
+  margin: #{$space}rem 0;
+ }
+
+ .mx-#{$space} {
+   margin: 0 #{$space}rem;
+ }
+
+ .p-#{$space} {
+  padding: #{$space}rem;
+ }
+
+ .px-#{$space} {
+  padding: 0 #{$space}rem;
+ }
+
+ .py-#{$space} {
+  padding: #{$space}rem 0;
+ }
+}
+
+.mx-auto {
+ margin-left: auto;
+ margin-right: auto;
+}
+
+// Flexbox
+.d-flex {
+  display: flex;
+}
+
+.flex-col{
+  flex-direction: column;
+}
+
+.jc-between {
+  justify-content: space-between;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+.jc-evenly {
+  justify-content: space-evenly;
+}
+
+.align {
+  align-items: center;
+}
+

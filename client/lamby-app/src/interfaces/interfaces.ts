@@ -19,7 +19,9 @@ export interface IMatchProp {
 }
 
 export interface IPlayerProp {
-  player: IPosition
+  player: number,
+  instruction: IPlayerPosition
+  updateView: (Pname: string, PInstruc: string) => void
 }
 
 export interface IPosition {
@@ -27,6 +29,12 @@ export interface IPosition {
   instruction: string
   matchId: number
   userId: number
+}
+
+export interface IPlayerPosition {
+  code: string,
+  move: string,
+  content: string
 }
 
 
@@ -71,11 +79,27 @@ export interface IRefreshPlayersAction extends IAction<'REFRESH_PLAYERS'> {
   }
 }
 
+export interface IRefreshPlayerName extends IAction<'REFRESH_NAME'> {
+  payload: {
+    playerName: string
+  }
+}
+
+export interface IRefreshInstruction extends IAction<'REFRESH_INSTRUCTION'> {
+  payload: {
+    instruction: string
+  }
+}
+
+
 export interface IAppStateValue {
   data: {
     match: IMatch
     positions: IPosition[]
     players: IPlayer[]
+    playerName: string
+    instruction: string
+
   }
 }
 

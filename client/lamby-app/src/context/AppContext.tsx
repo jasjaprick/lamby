@@ -36,6 +36,8 @@ export const defaultStateValue: IAppStateValue = {
         defaultPosition: ''
       },
     ],
+    playerName: 'Select Position',
+    instruction: 'By clicking on a dot'
   },
 };
 

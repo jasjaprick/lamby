@@ -1,0 +1,157 @@
+.player-dot {
+  appearance: none;
+  background: #fa541f;
+  border: none;
+  height: 33px;
+  width: 33px;
+  text-align: center;
+  font-weight: 900;
+  font-style: italic;
+  border-radius: 25px;
+  box-shadow: 0px 4px 15px 3px #131726;
+
+  &:focus {
+    outline: none;
+  }
+
+  p {
+    margin: 0;
+    line-height: 0;
+    font-weight: 900;
+    font-size: 1.2rem;
+  }
+}
+
+.GK {
+  position: absolute;
+  bottom: 18px;
+  left: calc(50% - 20px);
+}
+
+.RB {
+  position: absolute;
+  bottom: 90px;
+  right: 100px;
+}
+.RCB {
+  position: absolute;
+  bottom: 70px;
+  right: 155px;
+}
+.LCB {
+  position: absolute;
+  bottom: 70px;
+  left: 155px;
+}
+.LB {
+  position: absolute;
+  bottom: 90px;
+  left: 100px;
+}
+
+.LDM {
+  position: absolute;
+  top: 150px;
+  left: 140px;
+}
+.RDM {
+  position: absolute;
+  top: 150px;
+  right: 140px;
+}
+
+.CAM {
+  position: absolute;
+  top: 90px;
+  left: calc(50% - 20px);
+}
+
+.LW {
+  position: absolute;
+  top: 80px;
+  left: 100px;
+}
+
+.RW {
+  position: absolute;
+  top: 80px;
+  right: 100px;
+}
+
+.ST {
+  position: absolute;
+  top: 25px;
+  left: calc(50% - 20px);
+}
+
+@keyframes leftWingInside {
+  from {
+    transform: translate(0px, 0px);
+  }
+  to {
+    transform: translate(35px, -35px);
+  }
+}
+
+@keyframes rightWingInside {
+  from {
+    transform: translate(0px, 0px);
+  }
+  to {
+    transform: translate(35px, -35px);
+  }
+}
+
+@keyframes leftBackCross {
+  from {
+    transform: translate(0px, 0px);
+  }
+  to {
+    transform: translate(15px, -85px);
+  }
+}
+
+@keyframes rightBackCross {
+  from {
+    transform: translate(0px, 0px);
+  }
+  to {
+    transform: translate(-15px, -85px);
+  }
+}
+
+.lw-ci {
+  transition: 0.3s ease all;
+  animation-name: leftWingInside;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1s;
+  animation-delay: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+.rw-ci {
+  transition: 0.3s ease all;
+  animation-name: rightWingInside;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1s;
+  animation-delay: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+.lb-ja {
+  transition: 0.3s ease all;
+  animation-name: leftBackCross;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1s;
+  animation-delay: 0.3s;
+  animation-fill-mode: forwards;
+}
+
+.rb-ja {
+  transition: 0.3s ease all;
+  animation-name: rightBackCross;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1s;
+  animation-delay: 0.3s;
+  animation-fill-mode: forwards;
+}

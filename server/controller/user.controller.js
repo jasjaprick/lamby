@@ -38,6 +38,18 @@ exports.deleteUser = async (req, res) => {
   }
 }
 
+exports.getPlayerById = async(req, res) => {
+  try {
+    const id =req.params.id;
+    const user = await db.User.findByPk(id)
+    res.status(200)
+    res.send(user)
+  } catch (error) {
+    res.status(500)
+    res.send(error)
+  }
+}
+
 exports.getCurrentUser = async (req, res) => {
   try {
     const user = await db.User.findByPk(1)

@@ -1,0 +1,18 @@
+.edit {
+  position: absolute;
+  top: 32px;
+  right: 40px;
+  z-index: 10;
+}
+
+.pitch {
+  background: url('../../img/pitch.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 50vh;
+  width: 60vw;
+  margin: auto;
+  position: relative;
+  min-width: 400px;
+}

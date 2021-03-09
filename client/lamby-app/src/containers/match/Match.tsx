@@ -1,7 +1,7 @@
 import {useEffect} from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import MatchEditor from '../../components/matchEditor/matchEditor';
-import MatchDisplay from '../../components/matchDisplay/matchDisplay';
+import MatchEditor from '../../components/matchEditor/MatchEditor'
+import MatchDisplay from '../../components/matchDisplay/MatchDisplay';
 import { api } from '../../services/apiClient';
 import { useStateDispatch } from '../../context/AppState';
 

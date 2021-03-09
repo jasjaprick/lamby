@@ -1,31 +1,45 @@
 import './App.scss'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+} from 'react-router-dom';
 import Home from './containers/home/Home'
 import Match from './containers/match/Match'
 import Profile from './containers/profile/Profile'
 import AppStateProvider from './context/AppState'
-import MatchEditor from './components/matchEditor/matchEditor'
+import MatchEditor from './components/matchEditor/MatchEditor'
 
 function App () {
+
+
+
+  
 
   return (
     <AppStateProvider>
       <div className='App'>
         <Router>
-          <nav>
+          <nav className='navbar'>
             <ul>
               <li>
-                <Link to='/'>Home</Link>
+                <NavLink to='/home' activeClassName='active'>
+                  Home
+                </NavLink>
               </li>
               <li>
-                <Link to='/match'>Match</Link>
+                <NavLink to='/match' activeClassName='active'>
+                  Match
+                </NavLink>
               </li>
               <li>
-                <Link to='/profile'>Profile</Link>
+                <NavLink to='/profile' activeClassName='active'>
+                  Profile
+                </NavLink>
               </li>
             </ul>
           </nav>
-
           <Switch>
             <Route path='/match'>
               <Match />
@@ -36,7 +50,7 @@ function App () {
             <Route path='/match/edit'>
               <MatchEditor />
             </Route>
-            <Route path='/'>
+            <Route path='/home'>
               <Home />
             </Route>
           </Switch>

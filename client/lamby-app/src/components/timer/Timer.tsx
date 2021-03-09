@@ -41,7 +41,7 @@ const Timer: React.FC = () => {
   })
 
   return (
-    <div>
+    <div className="timer">
       <span>
         {timeLeft.days}
         {timeLeft.days > 1 ? ' DAYS ' : ' DAY '}
