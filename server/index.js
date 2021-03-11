@@ -6,11 +6,6 @@ const db = require('./model/index');
 
 const app = express();
 
-// const corsConfig = {
-//   origin: 'http://localhost:3000',
-//   credentials: true,
-// }
-
 const PORT = process.env.PORT;
 
 app.use(cors());
