@@ -32,7 +32,8 @@ exports.addUser = async (req, res) => {
       userType,
       defaultPosition,
     });
-    res.sendStatus(201);
+    res.status(201);
+    res.send('user created');
   } catch (error) {
     res.status(500);
     res.send(error);
