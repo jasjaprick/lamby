@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import './MatchEditor.scss';
+import './matchEditor.scss';
 import { Link } from 'react-router-dom';
 import { ICode, IPosition } from '../../interfaces/interfaces';
 import { AppStateContext } from '../../context/AppContext';
@@ -18,7 +18,7 @@ const MatchEditor: React.FC = () => {
     { code: 'gk-jp', content: 'Goal keeper join play' },
   ]);
   const dispatch = useStateDispatch();
-  const { players, match} = data
+  const { players, match } = data;
   const positionCodes: ICode[] = [
     { code: 'GK', content: 'Goalkeeper' },
     { code: 'LB', content: 'Left Back' },
@@ -34,7 +34,7 @@ const MatchEditor: React.FC = () => {
   ];
 
   const getCurrentPosition = () => {
-    return positionCodes.filter((pos) => pos.code === position);
+    return positionCodes.filter(pos => pos.code === position);
   };
   const currentPos: any[] = getCurrentPosition();
 
@@ -60,7 +60,7 @@ const MatchEditor: React.FC = () => {
         ];
         break;
       case 'LB':
-         instructions = [
+        instructions = [
           { code: 'lb lb-sb', content: 'Cut inside' },
           { code: 'lb lb-ja', content: 'Give crosses' },
         ];
@@ -103,8 +103,8 @@ const MatchEditor: React.FC = () => {
         break;
       case 'ST':
         instructions = [
-          { code: 'st st-ot', content: "False 9" },
-          { code: 'st st-sb', content: "Give crosses" },
+          { code: 'st st-ot', content: 'False 9' },
+          { code: 'st st-sb', content: 'Give crosses' },
         ];
         break;
     }
@@ -135,9 +135,7 @@ const MatchEditor: React.FC = () => {
     );
   }
 
-
-
-  const positionChange = (num) => {
+  const positionChange = num => {
     const pos = positionCodes[num];
     const newPos = instructionSelector(pos.code);
     setPosition(pos.code);
@@ -158,15 +156,15 @@ const MatchEditor: React.FC = () => {
     positionChange(count);
   };
 
-  const handlePlayerChange = (e) => {
+  const handlePlayerChange = e => {
     setPlayerId(e.target.value);
   };
 
-  const handleInstructionChange = (e) => {
+  const handleInstructionChange = e => {
     setFinalInstruction(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const matchPosition: IPosition = {
       matchId: match.id,
@@ -184,13 +182,13 @@ const MatchEditor: React.FC = () => {
     oneUp();
   };
 
- useEffect(() => {
+  useEffect(() => {
     const animation = document.querySelector('.selector__content--inner');
 
     animation.addEventListener('animationend', () => {
       setFade(false);
-    })
- }, [])
+    });
+  }, []);
 
   // END OF CHANGE/SUBMIT HANDLERS
 
@@ -227,8 +225,7 @@ const MatchEditor: React.FC = () => {
               name='player'
               id='players'
               onChange={handlePlayerChange}
-              value={playerId}
-            >
+              value={playerId}>
               {playerOptions}
             </select>
           </div>
@@ -239,8 +236,7 @@ const MatchEditor: React.FC = () => {
               name='instruction'
               id='instruction'
               onChange={handleInstructionChange}
-              value={finalInstruction}
-            >
+              value={finalInstruction}>
               {instructionOptions}
             </select>
           </div>

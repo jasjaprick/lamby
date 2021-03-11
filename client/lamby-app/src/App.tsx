@@ -1,22 +1,17 @@
-import './App.scss'
+import './App.scss';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   NavLink,
 } from 'react-router-dom';
-import Home from './containers/home/Home'
-import Match from './containers/match/Match'
-import Profile from './containers/profile/Profile'
-import AppStateProvider from './context/AppState'
-import MatchEditor from './components/matchEditor/MatchEditor'
+import Home from './containers/home/Home';
+import Match from './containers/match/Match';
+import Profile from './containers/profile/Profile';
+import AppStateProvider from './context/AppState';
+import MatchEditor from './components/matchEditor/matchEditor';
 
-function App () {
-
-
-
-  
-
+function App() {
   return (
     <AppStateProvider>
       <div className='App'>
@@ -60,4 +55,4 @@ function App () {
   );
 }
 
-export default App
+export default App;

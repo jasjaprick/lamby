@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useContext, useState } from 'react';
-import './MatchDisplay.scss';
+import './matchDisplay.scss';
 import { api } from '../../services/apiClient';
 import { Link } from 'react-router-dom';
 import { reducer } from '../../context/reducer';
@@ -47,7 +47,7 @@ const instructionsArray: IPlayerPosition[] = [
   {
     code: 'ST',
     move: 'st-ot',
-    content: "Drop back and act like a false 9",
+    content: 'Drop back and act like a false 9',
   },
   {
     code: 'ST',
@@ -58,10 +58,10 @@ const instructionsArray: IPlayerPosition[] = [
 
 const MatchDisplay: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, defaultStateValue);
-  const [lastName, setLastName] = useState('Select Player')
-  const [instruc, setInstruc] = useState('By clicking on a dot')
+  const [lastName, setLastName] = useState('Select Player');
+  const [instruc, setInstruc] = useState('By clicking on a dot');
 
-  const context = useContext(AppStateContext)
+  const context = useContext(AppStateContext);
   const { positions } = context.data;
 
   useEffect(() => {
@@ -78,18 +78,14 @@ const MatchDisplay: React.FC = () => {
     getNextMatch();
   }, []);
 
-    const handlePlayerChange = (
-      Pname: string,
-      Pinstruc: string
-    ): void => {
-
-      setLastName(Pname);
-      setInstruc(Pinstruc);
-    };
+  const handlePlayerChange = (Pname: string, Pinstruc: string): void => {
+    setLastName(Pname);
+    setInstruc(Pinstruc);
+  };
 
   const matchInfoKnown = (
     <div className='pitch'>
-      {positions.map((pos) => {
+      {positions.map(pos => {
         for (let i = 0; i < instructionsArray.length; i++) {
           if (pos.position === instructionsArray[i].code) {
             return (
@@ -105,8 +101,6 @@ const MatchDisplay: React.FC = () => {
       })}
     </div>
   );
-
-
 
   const matchInfoUnknown = (
     <div className='center-div home'>

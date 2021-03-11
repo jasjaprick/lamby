@@ -1,29 +1,26 @@
-import {useEffect} from 'react'
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import MatchEditor from '../../components/matchEditor/MatchEditor'
-import MatchDisplay from '../../components/matchDisplay/MatchDisplay';
+import MatchEditor from '../../components/matchEditor/matchEditor';
+import MatchDisplay from '../../components/matchDisplay/matchDisplay';
 import { api } from '../../services/apiClient';
 import { useStateDispatch } from '../../context/AppState';
-
 
 const Match: React.FC = () => {
   const dispatch = useStateDispatch();
 
-
-
   useEffect(() => {
-    async function getAllPlayers (): Promise<void> {
-      const result = await api.getPlayers()
+    async function getAllPlayers(): Promise<void> {
+      const result = await api.getPlayers();
       dispatch({
         type: 'REFRESH_PLAYERS',
         payload: {
-          players: result
-        }
-      })
+          players: result,
+        },
+      });
     }
 
-    getAllPlayers()
-  }, [dispatch])
+    getAllPlayers();
+  }, [dispatch]);
 
   return (
     <div>
@@ -39,6 +36,6 @@ const Match: React.FC = () => {
       </Router>
     </div>
   );
-}
+};
 
-export default Match
+export default Match;
