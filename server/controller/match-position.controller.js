@@ -26,7 +26,7 @@ exports.addMatchPosition = async (req, res) => {
         through: { position, instruction },
       });
       res.status(201);
-      res.send('user added');
+      res.send('user    added');
     }
     res.send();
   } catch (error) {
