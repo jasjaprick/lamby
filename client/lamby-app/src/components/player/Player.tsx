@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Player.scss';
 import { IPlayerProp } from '../../interfaces/interfaces';
 import { api } from '../../services/apiClient';
