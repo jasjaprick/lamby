@@ -1,11 +1,11 @@
 import './App.scss';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   NavLink,
 } from 'react-router-dom';
-import React from 'react';
 import Home from './containers/home/Home';
 import Match from './containers/match/Match';
 import Profile from './containers/profile/Profile';

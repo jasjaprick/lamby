@@ -3,7 +3,11 @@ import './Player.scss';
 import { IPlayerProp } from '../../interfaces/interfaces';
 import { api } from '../../services/apiClient';
 
-const Player: React.FC<IPlayerProp> = ({ player, instruction, updateView }) => {
+const Player: React.FC<IPlayerProp> = ({
+  player,
+  instruction,
+  updateView,
+}: any) => {
   const [lastName, setLastName] = useState('');
   const [playerNumber, setPlayerNumber] = useState(0);
   useEffect(() => {

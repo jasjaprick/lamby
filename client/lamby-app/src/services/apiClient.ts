@@ -35,7 +35,10 @@ async function postMatchPosition(body: IPosition): Promise<void> {
 }
 
 // Helper function for fetching
-async function fetchRequest(path: string, options?: object): Promise<any> {
+async function fetchRequest(
+  path: string,
+  options?: Record<string, unknown>
+): Promise<any> {
   return await fetch(base_url + path, options)
     .then((res) => (res.status < 400 ? res : Promise.reject()))
     .then((res) => (res.status === 204 ? res : res.json()))

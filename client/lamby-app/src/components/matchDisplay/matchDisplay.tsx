@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect, useReducer, useContext, useState } from 'react';
 import './matchDisplay.scss';
 import { api } from '../../services/apiClient';
@@ -85,7 +86,7 @@ const MatchDisplay: React.FC = () => {
 
   const matchInfoKnown = (
     <div className='pitch'>
-      {positions.map(pos => {
+      {positions.map((pos): any => {
         for (let i = 0; i < instructionsArray.length; i++) {
           if (pos.position === instructionsArray[i].code) {
             return (

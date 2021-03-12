@@ -1,4 +1,4 @@
-import { useReducer, useEffect, useContext } from 'react';
+import React, { useReducer, useEffect, useContext, FC } from 'react';
 import {
   AppStateContext,
   AppDispatchContext,
@@ -6,6 +6,10 @@ import {
 } from './AppContext';
 import { reducer } from './reducer';
 import { api } from '../services/apiClient';
+
+interface Iprops {
+  children: JSX.Element;
+}
 
 export const useStateDispatch = () => {
   const dispatch = useContext(AppDispatchContext);
@@ -17,7 +21,7 @@ export const useStateDispatch = () => {
   return dispatch;
 };
 
-const AppStateProvider: React.FC = ({ children }) => {
+const AppStateProvider: FC<Iprops> = ({ children }: any) => {
   const [state, dispatch] = useReducer(reducer, defaultStateValue);
 
   useEffect(() => {

@@ -34,7 +34,7 @@ const MatchEditor: React.FC = () => {
   ];
 
   const getCurrentPosition = () => {
-    return positionCodes.filter(pos => pos.code === position);
+    return positionCodes.filter((pos) => pos.code === position);
   };
   const currentPos: any[] = getCurrentPosition();
 
@@ -108,7 +108,6 @@ const MatchEditor: React.FC = () => {
         ];
         break;
     }
-
     setInstruction(instructions);
     return instructions[0];
   };
@@ -135,7 +134,7 @@ const MatchEditor: React.FC = () => {
     );
   }
 
-  const positionChange = num => {
+  const positionChange = (num) => {
     const pos = positionCodes[num];
     const newPos = instructionSelector(pos.code);
     setPosition(pos.code);
@@ -156,15 +155,15 @@ const MatchEditor: React.FC = () => {
     positionChange(count);
   };
 
-  const handlePlayerChange = e => {
+  const handlePlayerChange = (e) => {
     setPlayerId(e.target.value);
   };
 
-  const handleInstructionChange = e => {
+  const handleInstructionChange = (e) => {
     setFinalInstruction(e.target.value);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const matchPosition: IPosition = {
       matchId: match.id,
