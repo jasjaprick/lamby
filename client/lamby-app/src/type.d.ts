@@ -1,6 +1,6 @@
-import { IMatch } from './interfaces/interfaces'
+import { IMatch } from './interfaces/interfaces';
 
 interface ContextType {
-  match: IMatch
-  dispatch: any
+  match: IMatch;
+  dispatch: any;
 }
