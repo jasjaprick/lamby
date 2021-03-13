@@ -28,6 +28,7 @@ describe('Player component' , ()=> {
   expect(screen.getByRole("button")).toBeTruthy;
   
   
+  
   })
 }
 )

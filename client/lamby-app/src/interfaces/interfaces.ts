@@ -48,7 +48,7 @@ export interface IPlayer {
   defaultPosition: string;
 }
 
-export interface Props {}
+// export interface Props {}
 
 interface IAction<T> {
   type: T;
