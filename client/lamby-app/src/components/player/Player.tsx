@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Player.scss';
 import { IPlayerProp } from '../../interfaces/interfaces';
 import { api } from '../../services/apiClient';
-// import '@testing-library/jest-dom/extend-expect';
-// import Fetch from '../fetch';
+
 
 
 
@@ -30,8 +29,6 @@ const Player: React.FC<IPlayerProp> = ({player, instruction, updateView}: any) =
   }
 
   const classes = `player-dot ${instruction.code}`;
-   
-  console.log('player', player.lastName)
 
   return (
     <button
@@ -41,9 +38,9 @@ const Player: React.FC<IPlayerProp> = ({player, instruction, updateView}: any) =
         sayHello();
       }}
       className={classes}
-      role="button">
+      >
       <p>{playerNumber}</p>
-    </button>
+          </button>
   );
 };
 

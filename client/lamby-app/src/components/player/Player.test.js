@@ -2,23 +2,25 @@ import React from "react";
 import ReactDOM from 'react-dom';
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
 import Player from './Player';
-// import { IPlayerProp } from '../../interfaces/interfaces';
 
-// console.log('IPlayerProp -> ' , IPlayerProp);
-// console.log('Player -> ' , Player);
 
+//TEST RENDER COMPONENT => OK
 const mocksPlayer = {
-  player: 5,
+  player: 92,
   instruction: {
-    code: 'gk gk-sb', 
-    move: 'any move',
-    content: 'Stay back'
+    code: 'LDM', 
+    move: 'ldm-ot',
+    content: 'Cover center'
   },
-  updateView: ('Pname', 'Stay back during the game')
+  updateView: ('TESTINGSON', 'Cover center')
 }
 
+
+
+//TEST RENDER LAST NAME
+const mocksLastName =  'TESTINGSON';
+
 describe('Player component' , ()=> {
-  
   it ("renders correctly", () => { 
     render(<Player 
     player={mocksPlayer.player}
@@ -26,8 +28,15 @@ describe('Player component' , ()=> {
     updateView={mocksPlayer.updateView}
       />)
   expect(screen.getByRole("button")).toBeTruthy;
-  
-  
-  })
-}
-)
+   });
+
+
+   it('render last Name', ()=> {
+    render(<Player 
+      lastName={mocksLastName}
+      instruction={mocksPlayer.instruction}
+        />)
+        expect(screen.getByRole('button')).toBeInTheDocument();
+   })
+});
+
