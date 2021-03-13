@@ -39,7 +39,7 @@ const Player: React.FC<IPlayerProp> = ({player, instruction, updateView}: any) =
       }}
       className={classes}
       >
-      <p>{playerNumber}</p>
+      <p data-testid='player-number-text'>{playerNumber}</p>
           </button>
   );
 };

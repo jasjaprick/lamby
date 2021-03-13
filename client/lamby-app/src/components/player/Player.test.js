@@ -1,12 +1,15 @@
 import React from "react";
 import ReactDOM from 'react-dom';
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import { render, waitFor, screen} from '@testing-library/react';
 import Player from './Player';
+import { api } from '../../services/apiClient';
 
+
+jest.mock('../../services/apiClient')
 
 //TEST RENDER COMPONENT => OK
 const mocksPlayer = {
-  player: 92,
+  player: 5,
   instruction: {
     code: 'LDM', 
     move: 'ldm-ot',
@@ -15,28 +18,29 @@ const mocksPlayer = {
   updateView: ('TESTINGSON', 'Cover center')
 }
 
-
-
 //TEST RENDER LAST NAME
-const mocksLastName =  'TESTINGSON';
+const mocksPlayer2 =  {
+lastName: 'TESTINGSON',
+playerNumber: 5
+} ;
 
-describe('Player component' , ()=> {
-  it ("renders correctly", () => { 
+describe('Player component renders and player Number receive the correct data ' , ()=> {
+  it ("Component Player renders correctly", async () => { 
+    api.getPlayerById.mockResolvedValue(mocksPlayer2)
     render(<Player 
     player={mocksPlayer.player}
     instruction={mocksPlayer.instruction}
     updateView={mocksPlayer.updateView}
       />)
-  expect(screen.getByRole("button")).toBeTruthy;
-   });
-
-
-   it('render last Name', ()=> {
-    render(<Player 
-      lastName={mocksLastName}
-      instruction={mocksPlayer.instruction}
-        />)
-        expect(screen.getByRole('button')).toBeInTheDocument();
+      expect(screen.getByRole("button")).toBeInTheDocument();
+      await waitFor(()=> {
+        expect(screen.getByRole("button")).toHaveTextContent(5);
+      });
+     });
    })
-});
+
+
+
+ 
+
 
