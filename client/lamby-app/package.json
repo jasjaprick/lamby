@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "@types/jest": "^26.0.15",
@@ -16,6 +15,8 @@
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.1.7",
     "react-scripts": "4.0.3",
+    "react-test-render": "^1.1.2",
+    "react-test-renderer": "^17.0.1",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
@@ -44,10 +45,12 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.9",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
     "@typescript-eslint/parser": "^4.17.0",
     "eslint": "^7.21.0",
     "eslint-plugin-react": "^7.22.0",
+    "react-shallow-renderer": "^16.14.1",
     "ts-standard": "^10.0.0"
   }
 }

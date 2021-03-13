@@ -6,6 +6,7 @@ const Timer: React.FC = () => {
   // Context Hook
   const { data } = useContext(AppStateContext);
   const match = data.match;
+  console.log(match);
 
   // Function to get the values for the timer
   const countDownTimer = (): ITimeLeft => {
@@ -41,22 +42,21 @@ const Timer: React.FC = () => {
       isMounted = false;
     };
   });
-
   return (
     <div className='timer'>
-      <span>
+      <span data-testid='day'>
         {timeLeft.days}
         {timeLeft.days > 1 ? ' DAYS ' : ' DAY '}
       </span>
-      <span>
+      <span data-testid='hour'>
         {timeLeft.hours}
         {timeLeft.hours > 1 ? ' HOURS ' : ' HOUR '}
       </span>
-      <span>
+      <span data-testid='mins'>
         {timeLeft.minutes}
         {timeLeft.minutes > 1 ? ' MINS ' : ' MIN '}
       </span>
-      <span>
+      <span data-testid='sec'>
         {timeLeft.seconds}
         {timeLeft.seconds > 1 ? ' SECS ' : ' SEC '}
       </span>

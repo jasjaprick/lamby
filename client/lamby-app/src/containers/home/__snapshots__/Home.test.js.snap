@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly Home-Page 1`] = `
+<div
+  className="home-wrapper"
+>
+  <header
+    className="header"
+  >
+    <h1>
+      HOME
+    </h1>
+  </header>
+  <div
+    className="home center-div"
+  >
+    <h1>
+      
+    </h1>
+    <h4>
+      vs
+    </h4>
+    <h1>
+      
+    </h1>
+    <h4>
+      
+    </h4>
+    <Timer />
+    <Link
+      className="btn main-btn"
+      to="/match/edit"
+    >
+      EDIT MATCH
+    </Link>
+  </div>
+</div>
+`;
