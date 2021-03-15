@@ -1,31 +1,38 @@
-import React from 'react';
 import ReactDom from 'react-dom';
-import {
-  cleanup,
-  getByTestId,
-  render,
-  fireEvent,
-} from '@testing-library/react';
+import React from 'react';
+import { cleanup, render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import TestRenderer from 'react-test-renderer';
-
 import Timer from './Timer';
 
-const AppStateContext = {
-  id: 0,
-  homeTeam: 'barca',
-  awayTeam: 'madrid',
-  formation: '4-3-3',
-  venue: 'Old Trafford',
-  date: {
-    days: 2,
-    hours: 20,
-    minutes: 30,
-    seconds: 10,
-  },
-};
-jest.fn(AppStateContext);
+const timerMock = {
+  data: {
+    match: {
+    id: 0,
+    homeTeam: 'barca',
+    awayTeam: 'madrid',
+    formation: '4-3-3',
+    venue: 'Old Trafford',
+    date:"2021-04-14T15:00:00.000Z" ,
+   
+    }
+   
+  
+  }
+}
+
+
+
+it('should log a user in', () => {
+const AppStateContext = React.createContext(timerMock);
+    const { getByText } = render(
+    < MyContext.Provider; value={data}>
+    <Timer />
+  </ MyContext.Provider>
+  );
+    
+ })
+
 
 afterEach(cleanup);
 
@@ -35,25 +42,22 @@ it('it renders Time component', () => {
   ReactDom.unmountComponentAtNode(div);
 });
 
-it('it render the day left', () => {
+it('it render the time left', () => {
   const { getByTestId } = render(<Timer />);
-  const time = getByTestId('day');
-  console.log(time.innerHTML);
-  expect(time).toBeInTheDocument();
+  const day = getByTestId('day');
+  expect(day).toBeInTheDocument();
+  const hour = getByTestId('hour');
+  expect(hour).toBeInTheDocument();
+  const mins = getByTestId('mins');
+  expect(mins).toBeInTheDocument();
+  const sec = getByTestId('sec');
+  expect(sec).toBeInTheDocument();
 });
 
-it('it render the hours left', () => {
-  const { getByTestId } = render(<Timer />);
-  const time = getByTestId('hour');
-  expect(time).toBeInTheDocument();
-});
-it('it render the minutes left', () => {
-  const { getByTestId } = render(<Timer />);
-  const time = getByTestId('mins');
-  expect(time).toBeInTheDocument();
-});
-it('it render the sec left', () => {
-  const { getByTestId } = render(<Timer />);
-  const time = getByTestId('sec');
-  expect(time).toBeInTheDocument();
+test('mock hook', () => {
+  timerContextMock.mockReturnValue(AppStateContext);
+  const { getByTestId } = new ShallowRenderer().render(<Timer />);
+  const time = getByTestId('day');
+  console.log(time.innerHTML);
+  console.log();
 });
