@@ -12,10 +12,10 @@ app.use(cors());
 app.use(express.json());
 app.use(router);
 
-(async function () {
+const server = (async function () {
   try {
     await db.sequelize.sync();
-    console.log('lamby_db is connected');
+    console.log('DB is connected');
     app.listen(PORT, () => {
       console.log(`Server listening at http://localhost:${PORT} 🚀`);
     });
@@ -23,3 +23,5 @@ app.use(router);
     console.log('Error while connecting to server', error);
   }
 })();
+
+module.exports = server;
