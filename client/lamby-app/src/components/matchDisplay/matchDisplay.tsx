@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useReducer, useContext, useState } from 'react';
 import './matchDisplay.scss';
 import { api } from '../../services/apiClient';
-import { Link } from 'react-router-dom';
+import { Link, Router } from 'react-router-dom';
 import { reducer } from '../../context/reducer';
 import { AppStateContext, defaultStateValue } from '../../context/AppContext';
 import Player from '../player/Player';
@@ -109,16 +109,21 @@ const MatchDisplay: React.FC = () => {
     </div>
   );
 
+  console.log('posLen', positions.length);
+  console.log('dis', dispatch)
+
   return (
-    <div className='match-display'>
+    <div className='match-display' data-testid="player">
       <header className='header'>
         <h1>Match</h1>
+     
         <Link to='/match/edit' className='edit'>
           <img src='/img/edit.svg' alt='edit' />
         </Link>
+      
       </header>
       <div className='p-1'></div>
-      <div>{positions.length < 5 ? matchInfoUnknown : matchInfoKnown}</div>
+      <div >{positions.length < 10 ? matchInfoUnknown : matchInfoKnown}</div>
       <div className='p-1 text-center'>
         <h1 className=''>{lastName}</h1>
         <p className=''>{instruc}</p>
