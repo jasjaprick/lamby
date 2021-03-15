@@ -31,8 +31,8 @@ module.exports = {
     venue: 'paris',
   },
   mockMatch7: {
-    awayTeam2: 1,
-    date2: '2125-06-14 15:00:00',
-    venues: 1,
+    awayTeam: 1,
+    date: '2125-06-14 15:00:00',
+    venue: ['a', 1],
   },
 };
