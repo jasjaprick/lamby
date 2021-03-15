@@ -2,14 +2,12 @@ const db = require('../model');
 const { Op } = require('sequelize');
 
 exports.addMatchPosition = async (req, res) => {
-  let respond;
   const { matchId, userId, position, instruction } = req.body;
   try {
     const currentPosition = await db.MatchPosition.findAll({
       where: { matchId: matchId, position: position },
     });
     const match = await db.Match.findByPk(matchId);
-
     if (currentPosition) {
       await db.MatchPosition.destroy({
         where: {
@@ -26,9 +24,8 @@ exports.addMatchPosition = async (req, res) => {
         through: { position, instruction },
       });
       res.status(201);
-      res.send('user    added');
     }
-    res.send();
+    res.send('user added');
   } catch (error) {
     res.status(500);
     console.log(error);
