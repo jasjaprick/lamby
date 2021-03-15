@@ -12,9 +12,9 @@ app.use(cors());
 app.use(express.json());
 app.use(router);
 
-const server = (async function () {
+module.exports = (async function () {
   try {
-    await db.sequelize.sync();
+    await db.sequelize.sync({ force: true });
     console.log('DB is connected');
     app.listen(PORT, () => {
       console.log(`Server listening at http://localhost:${PORT} 🚀`);
@@ -23,5 +23,3 @@ const server = (async function () {
     console.log('Error while connecting to server', error);
   }
 })();
-
-module.exports = server;
