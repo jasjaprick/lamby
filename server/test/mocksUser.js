@@ -76,7 +76,7 @@ module.exports = {
     playerNumber: '11',
     defaultPosition: 'CB',
   },
-  mockUser1: {
+  mockUser12: {
     email: 'Alcapone@gmail.com',
     firstName: 'Alcapone',
     lastName: 'El Capo',

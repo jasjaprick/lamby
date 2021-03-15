@@ -21,13 +21,18 @@ module.exports = {
   },
   mockMatch5: {
     awayTeam: 'Berlind',
-    date: '2021-03-14 15:00:00',
+    date: '5021-03-14 15:00:00',
     venue: 'Old Trafford',
   },
 
   mockMatch6: {
     awayTeam: 'PGS',
-    date: '2021-06-14 15:00:00',
+    date: '2125-06-14 15:00:00',
     venue: 'paris',
+  },
+  mockMatch7: {
+    awayTeam2: 1,
+    date2: '2125-06-14 15:00:00',
+    venues: 1,
   },
 };
