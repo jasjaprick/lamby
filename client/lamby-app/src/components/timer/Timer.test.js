@@ -29,31 +29,20 @@ jest.fn(AppStateContext);
 
 afterEach(cleanup);
 
-it('it renders Time component', () => {
+it('Time component is being renders', () => {
   const div = document.createElement('div');
   ReactDom.render(<Timer></Timer>, div);
   ReactDom.unmountComponentAtNode(div);
 });
 
-it('it render the day left', () => {
+it('timeleft is being renders', () => {
   const { getByTestId } = render(<Timer />);
-  const time = getByTestId('day');
-  console.log(time.innerHTML);
-  expect(time).toBeInTheDocument();
-});
-
-it('it render the hours left', () => {
-  const { getByTestId } = render(<Timer />);
-  const time = getByTestId('hour');
-  expect(time).toBeInTheDocument();
-});
-it('it render the minutes left', () => {
-  const { getByTestId } = render(<Timer />);
-  const time = getByTestId('mins');
-  expect(time).toBeInTheDocument();
-});
-it('it render the sec left', () => {
-  const { getByTestId } = render(<Timer />);
-  const time = getByTestId('sec');
-  expect(time).toBeInTheDocument();
+  const day = getByTestId('day');
+  const mins = getByTestId('mins');
+  const hour = getByTestId('hour');
+  const sec = getByTestId('sec');
+  expect(hour).toBeInTheDocument();
+  expect(mins).toBeInTheDocument();
+  expect(sec).toBeInTheDocument();
+  expect(day).toBeInTheDocument();
 });
