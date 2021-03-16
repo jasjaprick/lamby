@@ -5,12 +5,9 @@ import { IPosition } from '../../interfaces/IPosition';
 import { AppStateContext } from '../../context/AppContext';
 import { api } from '../../services/apiClient';
 import { useStateDispatch } from '../../context/AppState';
-
-
-interface ICode {
-  code: string;
-  content: string;
-}
+import positionCodes from '../../Instructions_&_Positions/PositionCodes';
+import instructionSelector from '../../Instructions_&_Positions/InstructionSelector';
+import positionChange from '../../Handlers/ChangeHandlers';
 
 
 const MatchEditor: React.FC = () => {
@@ -20,105 +17,24 @@ const MatchEditor: React.FC = () => {
   const [fade, setFade] = useState(true);
   const [count, setCount] = useState(1);
   const [finalInstruction, setFinalInstruction] = useState('gk-sb');
+
   const [instructions, setInstruction] = useState([
     { code: 'gk-sb', content: 'Goal keeper stay back' },
     { code: 'gk-jp', content: 'Goal keeper join play' },
   ]);
+
   const dispatch = useStateDispatch();
   const { players, match } = data;
-  const positionCodes: ICode[] = [
-    { code: 'GK', content: 'Goalkeeper' },
-    { code: 'LB', content: 'Left Back' },
-    { code: 'LCB', content: 'Left Center Back' },
-    { code: 'RCB', content: 'Right Center Back' },
-    { code: 'RB', content: 'Right Back' },
-    { code: 'LDM', content: 'Left Defensive Mid' },
-    { code: 'RDM', content: 'Right Defensive Mid' },
-    { code: 'CAM', content: 'Central Attacking Mid' },
-    { code: 'LW', content: 'Left Winger' },
-    { code: 'ST', content: 'Striker' },
-    { code: 'RW', content: 'Right Winger' },
-  ];
+
 
   const getCurrentPosition = () => {
     return positionCodes.filter((pos) => pos.code === position);
   };
   const currentPos: any[] = getCurrentPosition();
 
-  const instructionSelector = (position: string): ICode => {
-    let instructions;
-    switch (position) {
-      case 'GK':
-        instructions = [
-          { code: 'gk gk-sb', content: 'Stay back' },
-          { code: 'gk gk-jp', content: 'Join play' },
-        ];
-        break;
-      case 'LCB':
-        instructions = [
-          { code: 'lcb lcb-sb', content: 'Stay back' },
-          { code: 'lcb lcb-ja', content: 'Join attack' },
-        ];
-        break;
-      case 'RCB':
-        instructions = [
-          { code: 'rcb rcb-sb', content: 'Stay back' },
-          { code: 'rcb rcb-ja', content: 'Join attack' },
-        ];
-        break;
-      case 'LB':
-        instructions = [
-          { code: 'lb lb-sb', content: 'Cut inside' },
-          { code: 'lb lb-ja', content: 'Give crosses' },
-        ];
-        break;
-      case 'RB':
-        instructions = [
-          { code: 'rb rb-ot', content: 'Cut inside' },
-          { code: 'rb rb-sb', content: 'Give crosses' },
-        ];
-        break;
-      case 'LDM':
-        instructions = [
-          { code: 'ldm ldm-ot', content: 'Cover center' },
-          { code: 'ldm ldm-sb', content: 'Cover wing' },
-        ];
-        break;
-      case 'RDM':
-        instructions = [
-          { code: 'rdm rdm-ot', content: 'Cover center' },
-          { code: 'rdm rdm-sb', content: 'Cover wing' },
-        ];
-        break;
-      case 'CAM':
-        instructions = [
-          { code: 'cam cam-ot', content: 'Free roam' },
-          { code: 'cam cam-sb', content: 'Stay Back' },
-        ];
-        break;
-      case 'LW':
-        instructions = [
-          { code: 'lw lw-ci', content: 'Cut inside' },
-          { code: 'lw lw-sw', content: 'Stay wide' },
-        ];
-        break;
-      case 'RW':
-        instructions = [
-          { code: 'rw rw-ot', content: 'Cut inside' },
-          { code: 'rw rw-sb', content: 'Give crosses' },
-        ];
-        break;
-      case 'ST':
-        instructions = [
-          { code: 'st st-ot', content: 'False 9' },
-          { code: 'st st-sb', content: 'Give crosses' },
-        ];
-        break;
-    }
-    setInstruction(instructions);
-    return instructions[0];
-  };
-  // END OF DATA VARS
+
+  
+  
 
   // OPTIONS INSTANTIATION
   const playerOptions: JSX.Element[] = [];
@@ -141,25 +57,19 @@ const MatchEditor: React.FC = () => {
     );
   }
 
-  const positionChange = (num) => {
-    const pos = positionCodes[num];
-    const newPos = instructionSelector(pos.code);
-    setPosition(pos.code);
-    setFinalInstruction(newPos.code);
-  };
 
   const oneUp = () => {
     setFade(true);
     if (count === 10) setCount(0);
     else setCount(count + 1);
-    positionChange(count);
+    positionChange(count, instructions, setInstruction, setPosition, setFinalInstruction);
   };
 
   const oneDown = () => {
     setFade(true);
     if (count === 0) setCount(10);
     else setCount(count - 1);
-    positionChange(count);
+    positionChange(count, instructions, setInstruction, setPosition, setFinalInstruction);
   };
 
   const handlePlayerChange = (e) => {

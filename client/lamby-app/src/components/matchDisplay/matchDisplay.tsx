@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { reducer } from '../../context/reducer';
 import { AppStateContext, defaultStateValue } from '../../context/AppContext';
 import Player from '../player/Player';
-import InstructionsPlayer from '../Helpers/InstructionsPlayers';
+import InstructionsPlayer from '../../Instructions_&_Positions/InstructionsPlayers';
 
 
 const MatchDisplay: React.FC = () => {
