@@ -24,6 +24,7 @@ test('rendering right number of players', async () => {
 })
 
 
+
 const mockPlayerPositions = {data: { positions: [
   {
     position: 'GK',
