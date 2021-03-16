@@ -23,7 +23,7 @@ exports.addUser = async (req, res) => {
     defaultPosition,
   } = req.body;
   try {
-    db.User.create({
+    const user = await db.User.create({
       email,
       password,
       firstName,
@@ -33,7 +33,7 @@ exports.addUser = async (req, res) => {
       defaultPosition,
     });
     res.status(201);
-    res.send('user created');
+    res.send(user);
   } catch (error) {
     res.status(500);
     res.send(error);
@@ -41,14 +41,17 @@ exports.addUser = async (req, res) => {
 };
 
 exports.deleteUser = async (req, res) => {
-  const id = req.body.id;
-
+  const id = req.body.playerNumber;
   try {
+    const user = await db.User.findAll({ where: { playerNumber: id } });
+    if (user.length !== 1) throw new error();
     await db.User.destroy({
       where: {
-        id,
+        playerNumber: id,
       },
     });
+    res.status(200);
+    res.send(user);
   } catch (error) {
     res.status(500);
     res.send(error);
@@ -69,6 +72,7 @@ exports.getPlayerById = async (req, res) => {
 
 exports.getCurrentUser = async (req, res) => {
   try {
+    // the app is not complet so there is only one account, therefore user will be only 1
     const user = await db.User.findByPk(1);
     res.status(200);
     res.send(user);

@@ -18,7 +18,6 @@ describe('check MATCH`S table', async () => {
   });
 
   it('Getting Next Match (get)', async () => {
-    await request(API).get('/match');
     await db.Match.create(mocksMatch.mockMatch5);
     await db.Match.create(mocksMatch.mockMatch6);
     const res = await request(API).get('/match');
@@ -29,10 +28,12 @@ describe('check MATCH`S table', async () => {
 
   it('Getting all MATCHS (get)', async () => {
     await db.Match.create(mocksMatch.mockMatch1);
-    const res = await request(API).get('/match');
+    let res = await request(API).get('/match');
     expect(res.statusCode).equal(200);
     expect(res.body[2].venue).equal('Old Trafford');
     expect(res.body[2].id).equal(3);
+    res = await request(API).get('/matchs');
+    expect(res.statusCode).equal(404);
   });
 
   it('Create a new Matches (post)', async () => {
@@ -56,7 +57,7 @@ describe('check MATCH`S table', async () => {
 });
 
 //Position error-------------------------------------------------------------------
-describe('check POSITION API before user yable has data (error handler)', async () => {
+describe('check POSITION API before user Table has data (error handler)', async () => {
   it('check if POSITION`S table is emty (get)', async () => {
     const res = await request(API).get('/positions');
     expect(res.statusCode).equal(200);
@@ -87,7 +88,6 @@ describe('check MATCH`S table', async () => {
   });
 
   it('Getting User by Id (get)', async () => {
-    await request(API).get('/user');
     await db.User.create(mocksUser.mockUser1);
     const res = await request(API).get('/user/1');
     expect(res.statusCode).equal(200);
@@ -96,18 +96,50 @@ describe('check MATCH`S table', async () => {
   });
 
   it('Getting All Users  (get)', async () => {
-    await request(API).get('/user');
     await db.User.create(mocksUser.mockUser2);
     await db.User.create(mocksUser.mockUser3);
     await db.User.create(mocksUser.mockUser4);
-    const res = await request(API).get('/user');
+    let res = await request(API).get('/user');
     expect(res.statusCode).equal(200);
     expect(res.body[3].playerNumber).equal(4);
     expect(res.body.length).equal(4);
-  });
-  it('Getting All Users  (get-error)', async () => {
-    await request(API).get('/users');
-    const res = await request(API).get('/users');
+    res = await request(API).get('/users');
     expect(res.statusCode).equal(404);
+  });
+
+  it('Create a new User (post)', async () => {
+    let res = await request(API)
+      .post('/user')
+      .set('Content-Type', 'application/json')
+      .send(mocksUser.mockUser5);
+    expect(res.status).equal(201);
+    let test = await db.User.findAll();
+    expect(test.length).equal(5);
+  });
+
+  it('Create a new User (post-error-handler)', async () => {
+    let res = await request(API)
+      .post('/user')
+      .set('Content-Type', 'application/json')
+      .send(mocksUser.mockUser6);
+    expect(res.status).equal(500);
+    let test = await db.User.findAll();
+    expect(test.length).equal(5);
+  });
+
+  it('delete a new User (delete-error-handler)', async () => {
+    let res = await request(API)
+      .delete('/user')
+      .set('Content-Type', 'application/json')
+      .send(mocksUser.mockUser8);
+    expect(res.status).equal(500);
+  });
+
+  it('delete a new User (delete)', async () => {
+    let res = await request(API)
+      .delete('/user')
+      .set('Content-Type', 'application/json')
+      .send(mocksUser.mockUser4);
+    expect(res.status).equal(200);
   });
 });

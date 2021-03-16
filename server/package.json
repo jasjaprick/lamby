@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "testDataBase": "cross-env SQL_DATABASE=lamby_db_testing  mocha ./test/matchTesting"
+    "testDB": "cross-env SQL_DATABASE=lamby_db_testing  mocha ./test/matchTesting"
   },
   "author": "",
   "license": "ISC",
