@@ -23,7 +23,7 @@ const Player: React.FC<IPlayerProp> = ({player, instruction, updateView}: any) =
     getPlayerName();
   }, []);
 
-  function sayHello() {
+  function renderInfoPlayer() {
     const currentElement = document.querySelector(`.${instruction.code}`);
     currentElement.classList.add(instruction.move);
 
@@ -39,7 +39,7 @@ const Player: React.FC<IPlayerProp> = ({player, instruction, updateView}: any) =
       key={player}
       onClick={() => {
         updateView(lastName, instruction.content);
-        sayHello();
+        renderInfoPlayer();
       }}
       className={classes}
       >
