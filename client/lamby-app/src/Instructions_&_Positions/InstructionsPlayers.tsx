@@ -1,4 +1,4 @@
-import { IPlayerPosition } from '../../interfaces/IPlayerPosition';
+import { IPlayerPosition } from '../interfaces/IPlayerPosition';
 
  const InstructionsPlayer : IPlayerPosition[] = [
   { code: 'GK', move: 'gk-sb', content: 'Goal keeper stay back' },
