@@ -1,3 +1,4 @@
+//Components: ApiClient
 export interface IMatch {
   id: number;
   homeTeam: string;
@@ -7,22 +8,6 @@ export interface IMatch {
   venue: string;
 }
 
-export interface ITimeLeft {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
-
-export interface IMatchProp {
-  match: IMatch;
-}
-
-export interface IPlayerProp {
-  player: number;
-  instruction: IPlayerPosition;
-  updateView: (Pname: string, PInstruc: string) => void;
-}
 
 export interface IPosition {
   position: string;
@@ -31,6 +16,8 @@ export interface IPosition {
   userId: number;
 }
 
+
+//Components: Player & Match display
 export interface IPlayerPosition {
   code: string;
   move: string;

@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './Player.scss';
-import { IPlayerProp } from '../../interfaces/interfaces';
 import { api } from '../../services/apiClient';
+import { IPlayerPosition } from '../../interfaces/interfaces';
 
 
-
+interface IPlayerProp {
+  player: number;
+  instruction: IPlayerPosition;
+  updateView: (Pname: string, PInstruc: string) => void;
+}
 
 const Player: React.FC<IPlayerProp> = ({player, instruction, updateView}: any) => {
   const [lastName, setLastName] = useState('');
