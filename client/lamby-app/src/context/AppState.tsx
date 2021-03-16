@@ -1,7 +1,15 @@
-import { useReducer, useEffect, useContext } from 'react'
-import { AppStateContext, AppDispatchContext, defaultStateValue } from './AppContext'
-import { reducer } from './reducer'
-import { api } from '../services/apiClient'
+import React, { useReducer, useEffect, useContext, FC } from 'react';
+import {
+  AppStateContext,
+  AppDispatchContext,
+  defaultStateValue,
+} from './AppContext';
+import { reducer } from './reducer';
+import { api } from '../services/apiClient';
+
+interface Iprops {
+  children: JSX.Element;
+}
 
 export const useStateDispatch = () => {
   const dispatch = useContext(AppDispatchContext);
@@ -13,33 +21,29 @@ export const useStateDispatch = () => {
   return dispatch;
 };
 
-const AppStateProvider: React.FC = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, defaultStateValue)
+const AppStateProvider: FC<Iprops> = ({ children }: any) => {
+  const [state, dispatch] = useReducer(reducer, defaultStateValue);
 
   useEffect(() => {
-    async function getNextMatch (): Promise<void> {
-      const result = await api.getMatch()
+    async function getNextMatch(): Promise<void> {
+      const result = await api.getMatch();
       dispatch({
         type: 'REFRESH_MATCH',
         payload: {
-          match: result
-        }
-      })
-      const matchPositions = await api.getMatchPositions()
+          match: result,
+        },
+      });
+      const matchPositions = await api.getMatchPositions();
       dispatch({
         type: 'REFRESH_POSITIONS',
         payload: {
-          positions: matchPositions
-        }
-
-      })
-
+          positions: matchPositions,
+        },
+      });
     }
 
-    getNextMatch()
-  }, [])
-
-  
+    getNextMatch();
+  }, []);
 
   return (
     <AppStateContext.Provider value={state}>
@@ -47,7 +51,7 @@ const AppStateProvider: React.FC = ({ children }) => {
         {children}
       </AppDispatchContext.Provider>
     </AppStateContext.Provider>
-  )
-}
+  );
+};
 
-export default AppStateProvider
+export default AppStateProvider;

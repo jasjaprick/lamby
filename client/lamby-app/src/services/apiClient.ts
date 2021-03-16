@@ -1,5 +1,6 @@
 import { IMatch, IPlayer, IPosition } from '../interfaces/interfaces';
-const base_url: string = 'http://localhost:3001';
+
+const base_url = 'http://localhost:3001';
 
 async function getMatch(): Promise<IMatch> {
   return await fetchRequest('/next-match');
@@ -13,8 +14,8 @@ async function getCurrentUser(): Promise<IPlayer> {
   return await fetchRequest('/current-user');
 }
 
-async function getPlayerById(id: number):Promise<IPlayer> {
-  return await fetchRequest(`/user/${id}`)
+async function getPlayerById(id: number): Promise<IPlayer> {
+  return await fetchRequest(`/user/${id}`);
 }
 
 async function getMatchPositions(): Promise<IPosition[]> {
@@ -35,7 +36,10 @@ async function postMatchPosition(body: IPosition): Promise<void> {
 }
 
 // Helper function for fetching
-async function fetchRequest(path: string, options?: object): Promise<any> {
+async function fetchRequest(
+  path: string,
+  options?: RequestInit
+): Promise<any> {
   return await fetch(base_url + path, options)
     .then((res) => (res.status < 400 ? res : Promise.reject()))
     .then((res) => (res.status === 204 ? res : res.json()))
@@ -48,5 +52,5 @@ export const api = {
   postMatchPosition,
   getMatchPositions,
   getCurrentUser,
-  getPlayerById
+  getPlayerById,
 };

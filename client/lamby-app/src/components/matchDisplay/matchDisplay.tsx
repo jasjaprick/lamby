@@ -1,7 +1,8 @@
+import React from 'react';
 import { useEffect, useReducer, useContext, useState } from 'react';
-import './MatchDisplay.scss';
+import './matchDisplay.scss';
 import { api } from '../../services/apiClient';
-import { Link } from 'react-router-dom';
+import { Link, Router } from 'react-router-dom';
 import { reducer } from '../../context/reducer';
 import { AppStateContext, defaultStateValue } from '../../context/AppContext';
 import Player from '../player/Player';
@@ -47,7 +48,7 @@ const instructionsArray: IPlayerPosition[] = [
   {
     code: 'ST',
     move: 'st-ot',
-    content: "Drop back and act like a false 9",
+    content: 'Drop back and act like a false 9',
   },
   {
     code: 'ST',
@@ -58,10 +59,10 @@ const instructionsArray: IPlayerPosition[] = [
 
 const MatchDisplay: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, defaultStateValue);
-  const [lastName, setLastName] = useState('Select Player')
-  const [instruc, setInstruc] = useState('By clicking on a dot')
+  const [lastName, setLastName] = useState('Select Player');
+  const [instruc, setInstruc] = useState('By clicking on a dot');
 
-  const context = useContext(AppStateContext)
+  const context = useContext(AppStateContext);
   const { positions } = context.data;
 
   useEffect(() => {
@@ -78,18 +79,14 @@ const MatchDisplay: React.FC = () => {
     getNextMatch();
   }, []);
 
-    const handlePlayerChange = (
-      Pname: string,
-      Pinstruc: string
-    ): void => {
-
-      setLastName(Pname);
-      setInstruc(Pinstruc);
-    };
+  const handlePlayerChange = (Pname: string, Pinstruc: string): void => {
+    setLastName(Pname);
+    setInstruc(Pinstruc);
+  };
 
   const matchInfoKnown = (
     <div className='pitch'>
-      {positions.map((pos) => {
+      {positions.map((pos): any => {
         for (let i = 0; i < instructionsArray.length; i++) {
           if (pos.position === instructionsArray[i].code) {
             return (
@@ -106,24 +103,27 @@ const MatchDisplay: React.FC = () => {
     </div>
   );
 
-
-
   const matchInfoUnknown = (
     <div className='center-div home'>
       <h1>Match Info TBD</h1>
     </div>
   );
 
+  console.log('posLen', positions.length);
+  console.log('dis', dispatch)
+
   return (
-    <div className='match-display'>
+    <div className='match-display' data-testid="player">
       <header className='header'>
         <h1>Match</h1>
+     
         <Link to='/match/edit' className='edit'>
           <img src='/img/edit.svg' alt='edit' />
         </Link>
+      
       </header>
       <div className='p-1'></div>
-      <div>{positions.length < 5 ? matchInfoUnknown : matchInfoKnown}</div>
+      <div >{positions.length < 10 ? matchInfoUnknown : matchInfoKnown}</div>
       <div className='p-1 text-center'>
         <h1 className=''>{lastName}</h1>
         <p className=''>{instruc}</p>

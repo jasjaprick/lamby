@@ -5,12 +5,18 @@ import {
   IRefreshPlayersAction,
   IRefreshPositionsAction,
   IRefreshPlayerName,
-  IRefreshInstruction
-} from '../interfaces/interfaces'
+  IRefreshInstruction,
+} from '../interfaces/interfaces';
 
 export const reducer = (
   state: IAppStateValue,
-  action: IUpdatePositionAction | IRefreshPositionsAction | IRefreshMatchAction | IRefreshPlayersAction | IRefreshPlayerName | IRefreshInstruction
+  action:
+    | IUpdatePositionAction
+    | IRefreshPositionsAction
+    | IRefreshMatchAction
+    | IRefreshPlayersAction
+    | IRefreshPlayerName
+    | IRefreshInstruction
 ) => {
   switch (action.type) {
     case 'REFRESH_MATCH': {
@@ -84,4 +90,4 @@ export const reducer = (
       throw new Error('Unhandled action type'); // TODO Insert ${action.type}
     }
   }
-}
+};

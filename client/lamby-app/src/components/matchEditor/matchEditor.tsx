@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import './MatchEditor.scss';
+import './matchEditor.scss';
 import { Link } from 'react-router-dom';
 import { ICode, IPosition } from '../../interfaces/interfaces';
 import { AppStateContext } from '../../context/AppContext';
@@ -18,7 +18,7 @@ const MatchEditor: React.FC = () => {
     { code: 'gk-jp', content: 'Goal keeper join play' },
   ]);
   const dispatch = useStateDispatch();
-  const { players, match} = data
+  const { players, match } = data;
   const positionCodes: ICode[] = [
     { code: 'GK', content: 'Goalkeeper' },
     { code: 'LB', content: 'Left Back' },
@@ -60,7 +60,7 @@ const MatchEditor: React.FC = () => {
         ];
         break;
       case 'LB':
-         instructions = [
+        instructions = [
           { code: 'lb lb-sb', content: 'Cut inside' },
           { code: 'lb lb-ja', content: 'Give crosses' },
         ];
@@ -103,12 +103,11 @@ const MatchEditor: React.FC = () => {
         break;
       case 'ST':
         instructions = [
-          { code: 'st st-ot', content: "False 9" },
-          { code: 'st st-sb', content: "Give crosses" },
+          { code: 'st st-ot', content: 'False 9' },
+          { code: 'st st-sb', content: 'Give crosses' },
         ];
         break;
     }
-
     setInstruction(instructions);
     return instructions[0];
   };
@@ -134,8 +133,6 @@ const MatchEditor: React.FC = () => {
       </option>
     );
   }
-
-
 
   const positionChange = (num) => {
     const pos = positionCodes[num];
@@ -184,13 +181,13 @@ const MatchEditor: React.FC = () => {
     oneUp();
   };
 
- useEffect(() => {
+  useEffect(() => {
     const animation = document.querySelector('.selector__content--inner');
 
     animation.addEventListener('animationend', () => {
       setFade(false);
-    })
- }, [])
+    });
+  }, []);
 
   // END OF CHANGE/SUBMIT HANDLERS
 
@@ -227,8 +224,7 @@ const MatchEditor: React.FC = () => {
               name='player'
               id='players'
               onChange={handlePlayerChange}
-              value={playerId}
-            >
+              value={playerId}>
               {playerOptions}
             </select>
           </div>
@@ -239,8 +235,7 @@ const MatchEditor: React.FC = () => {
               name='instruction'
               id='instruction'
               onChange={handleInstructionChange}
-              value={finalInstruction}
-            >
+              value={finalInstruction}>
               {instructionOptions}
             </select>
           </div>

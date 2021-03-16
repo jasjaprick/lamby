@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly Home-Page 1`] = `
+<div
+  className="timer"
+>
+  <span
+    data-testid="day"
+  >
+    0
+     DAY 
+  </span>
+  <span
+    data-testid="hour"
+  >
+    0
+     HOUR 
+  </span>
+  <span
+    data-testid="mins"
+  >
+    0
+     MIN 
+  </span>
+  <span
+    data-testid="sec"
+  >
+    0
+     SEC 
+  </span>
+</div>
+`;
