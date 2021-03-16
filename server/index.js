@@ -12,14 +12,16 @@ app.use(cors());
 app.use(express.json());
 app.use(router);
 
-(async function () {
-  try {
-    await db.sequelize.sync({ force: true });
-    console.log('DB is connected');
-  } catch (error) {
-    console.log('Error while connecting to server', error);
-  }
-})();
+if (process.env.NODE_ENV !== 'test') {
+  (async function () {
+    try {
+      await db.sequelize.sync();
+    } catch (error) {
+      console.log(`${process.env.SQL_DATABASE} connected`);
+      console.log('Error while connecting to server', error);
+    }
+  })();
+}
 
 let server = app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT} 🚀`);

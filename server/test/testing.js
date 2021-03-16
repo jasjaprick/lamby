@@ -10,24 +10,22 @@ const mocksPositions = require('./mocksPositions');
 const mocksUser = require('./mocksUser');
 
 describe('set up the enviroment', async () => {
-  before(() => {
+  before(async () => {
     app = require('../index');
-  });
-  beforeEach(async () => {
-    await db.sequelize.sync({ force: true });
   });
   after(() => {
     db.sequelize.close();
     app.close();
   });
-
+  beforeEach(async () => {
+    await db.sequelize.sync({ force: true });
+  });
   describe('All tables are emty before testing', async () => {
     it('check if MATCH`s table is emty (get)', async () => {
       const res = await request(API).get('/match');
       expect(res.statusCode).equal(200);
       expect(res.text).equal('[]');
     });
-
     it('check if User`s table is emty (get)', async () => {
       const res = await request(API).get('/user');
       expect(res.statusCode).equal(200);
@@ -78,7 +76,7 @@ describe('set up the enviroment', async () => {
     });
   });
 
-  describe('check MATCH`S table', async () => {
+  describe('check user`s table', async () => {
     let res;
     beforeEach(async () => {
       await db.User.create(mocksUser.mockUser1);
