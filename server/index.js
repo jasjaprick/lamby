@@ -16,7 +16,7 @@ module.exports = (async function () {
   try {
     await db.sequelize.sync();
     console.log('DB is connected');
-    await app.listen(PORT, () => {
+    app.listen(PORT, () => {
       console.log(`Server listening at http://localhost:${PORT} 🚀`);
     });
   } catch (error) {
