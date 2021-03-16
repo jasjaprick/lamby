@@ -7,7 +7,9 @@ const db = require('../model');
 
 const mocksMatch = require('./mocksMatch');
 const mocksPositions = require('./mocksPositions');
+const mocksUser = require('./mocksUser');
 
+//match ----------------------------------------------------------
 describe('check MATCH`S table', async () => {
   it('check if MATCH`s table is emty (get)', async () => {
     const res = await request(API).get('/match');
@@ -53,7 +55,8 @@ describe('check MATCH`S table', async () => {
   });
 });
 
-describe('check POSITION API', async () => {
+//Position error-------------------------------------------------------------------
+describe('check POSITION API before user yable has data (error handler)', async () => {
   it('check if POSITION`S table is emty (get)', async () => {
     const res = await request(API).get('/positions');
     expect(res.statusCode).equal(200);
@@ -72,5 +75,39 @@ describe('check POSITION API', async () => {
     const res = await request(API).get('/positions');
     expect(res.statusCode).equal(200);
     expect(res.text).equal('[]');
+  });
+});
+
+//user-----------------------------------------------------------------------------
+describe('check MATCH`S table', async () => {
+  it('check if User`s table is emty (get)', async () => {
+    const res = await request(API).get('/user');
+    expect(res.statusCode).equal(200);
+    expect(res.text).equal('[]');
+  });
+
+  it('Getting User by Id (get)', async () => {
+    await request(API).get('/user');
+    await db.User.create(mocksUser.mockUser1);
+    const res = await request(API).get('/user/1');
+    expect(res.statusCode).equal(200);
+    expect(res.body.email).equal('yani@gmail.com');
+    expect(res.body.id).equal(1);
+  });
+
+  it('Getting All Users  (get)', async () => {
+    await request(API).get('/user');
+    await db.User.create(mocksUser.mockUser2);
+    await db.User.create(mocksUser.mockUser3);
+    await db.User.create(mocksUser.mockUser4);
+    const res = await request(API).get('/user');
+    expect(res.statusCode).equal(200);
+    expect(res.body[3].playerNumber).equal(4);
+    expect(res.body.length).equal(4);
+  });
+  it('Getting All Users  (get-error)', async () => {
+    await request(API).get('/users');
+    const res = await request(API).get('/users');
+    expect(res.statusCode).equal(404);
   });
 });
