@@ -1,10 +1,17 @@
 import React, { useContext, useState, useEffect } from 'react';
 import './matchEditor.scss';
 import { Link } from 'react-router-dom';
-import { ICode, IPosition } from '../../interfaces/interfaces';
+import { IPosition } from '../../interfaces/IPosition';
 import { AppStateContext } from '../../context/AppContext';
 import { api } from '../../services/apiClient';
 import { useStateDispatch } from '../../context/AppState';
+
+
+interface ICode {
+  code: string;
+  content: string;
+}
+
 
 const MatchEditor: React.FC = () => {
   const { data } = useContext(AppStateContext);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Player.scss';
 import { api } from '../../services/apiClient';
-import { IPlayerPosition } from '../../interfaces/interfaces';
+import { IPlayerPosition } from '../../interfaces/IPlayerPosition';
 
 
 interface IPlayerProp {
