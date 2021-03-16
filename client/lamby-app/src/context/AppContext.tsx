@@ -32,7 +32,8 @@ export const defaultStateValue: IAppStateValue = {
         goals: 0,
         assists: 0,
         matches: 0,
-        defaultPosition: ''
+        defaultPosition: '', 
+        selected: false
       },
     ],
     playerName: 'Select Position',

@@ -7,7 +7,6 @@ import { api } from '../../services/apiClient';
 import { useStateDispatch } from '../../context/AppState';
 import positionCodes from '../../Instructions_&_Positions/PositionCodes';
 import instructionSelector from '../../Instructions_&_Positions/InstructionSelector';
-import positionChange from '../../Handlers/ChangeHandlers';
 
 
 const MatchEditor: React.FC = () => {
@@ -32,12 +31,18 @@ const MatchEditor: React.FC = () => {
   };
   const currentPos: any[] = getCurrentPosition();
 
+console.log('cP', currentPos);
 
   
   
 
   // OPTIONS INSTANTIATION
   const playerOptions: JSX.Element[] = [];
+ 
+  console.log('pl', players);
+  console.log('match', match);
+  console.log('playerOptions', playerOptions);
+  
 
   for (const player of players) {
     playerOptions.push(
@@ -57,19 +62,29 @@ const MatchEditor: React.FC = () => {
     );
   }
 
+  const positionChange = (num) => {
+    const pos = positionCodes[num];
+    const newPos = instructionSelector(pos.code, instructions, setInstruction);
+    setPosition(pos.code);
+    setFinalInstruction(newPos.code);
+  };
+  
+  console.log('count', count)
+console.log('fade', fade);
+
 
   const oneUp = () => {
     setFade(true);
     if (count === 10) setCount(0);
     else setCount(count + 1);
-    positionChange(count, instructions, setInstruction, setPosition, setFinalInstruction);
+    positionChange(count);
   };
 
   const oneDown = () => {
     setFade(true);
     if (count === 0) setCount(10);
     else setCount(count - 1);
-    positionChange(count, instructions, setInstruction, setPosition, setFinalInstruction);
+    positionChange(count);
   };
 
   const handlePlayerChange = (e) => {
