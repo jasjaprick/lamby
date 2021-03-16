@@ -1,45 +1,23 @@
-import './App.scss'
+import './App.scss';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  NavLink,
+  Route
 } from 'react-router-dom';
-import Home from './containers/home/Home'
-import Match from './containers/match/Match'
-import Profile from './containers/profile/Profile'
-import AppStateProvider from './context/AppState'
-import MatchEditor from './components/matchEditor/MatchEditor'
+import NavBar from './components/NavBar/NavBar'
+import Home from './containers/home/Home';
+import Match from './containers/match/Match';
+import Profile from './containers/profile/Profile';
+import AppStateProvider from './context/AppState';
+import MatchEditor from './components/matchEditor/matchEditor';
 
-function App () {
-
-
-
-  
-
+function App() {
   return (
     <AppStateProvider>
       <div className='App'>
         <Router>
-          <nav className='navbar'>
-            <ul>
-              <li>
-                <NavLink to='/home' activeClassName='active'>
-                  Home
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to='/match' activeClassName='active'>
-                  Match
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to='/profile' activeClassName='active'>
-                  Profile
-                </NavLink>
-              </li>
-            </ul>
-          </nav>
+         <NavBar/>
           <Switch>
             <Route path='/match'>
               <Match />
@@ -60,4 +38,4 @@ function App () {
   );
 }
 
-export default App
+export default App;

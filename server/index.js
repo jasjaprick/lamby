@@ -1,28 +1,25 @@
-const express = require('express')
-const router = require('./router')
-const cors = require('cors')
-const db = require('./model/index')
+require('dotenv').config();
+const express = require('express');
+const router = require('./router');
+const cors = require('cors');
+const db = require('./model/index');
 
-const app = express()
+const app = express();
 
-// const corsConfig = {
-//   origin: 'http://localhost:3000',
-//   credentials: true,
-// }
+const PORT = process.env.PORT;
 
-const PORT = 3001
-
-app.use(cors())
-app.use(express.json())
+app.use(cors());
+app.use(express.json());
 app.use(router);
 
-(async function () {
+module.exports = (async function () {
   try {
-    await db.sequelize.sync()
+    await db.sequelize.sync();
+    console.log('DB is connected');
     app.listen(PORT, () => {
-      console.log(`Server listening at http://localhost:${PORT} 🚀`)
-    })
+      console.log(`Server listening at http://localhost:${PORT} 🚀`);
+    });
   } catch (error) {
-    console.log('Error while connecting to server', error)
+    console.log('Error while connecting to server', error);
   }
-})()
+})();
