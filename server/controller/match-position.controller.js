@@ -28,7 +28,7 @@ exports.addMatchPosition = async (req, res) => {
     res.send('user added');
   } catch (error) {
     res.status(500);
-    console.log(error);
+    //console.log(error);
     res.send(error);
   }
 };
