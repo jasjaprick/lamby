@@ -1,10 +1,9 @@
 import { createContext } from 'react'
-import {
-  IUpdatePositionAction,
-  IAppStateValue,
-  IRefreshMatchAction,
-  IRefreshPlayersAction
-} from '../interfaces/interfaces'
+import {IAppStateValue } from '../interfaces/IAppStateValue';
+import {IUpdatePositionAction} from '../interfaces/IUpdatePositionAction';
+import {IRefreshMatchAction } from '../interfaces/IRefreshMatchAction';
+import {IRefreshPlayersAction } from '../interfaces/IRefreshPlayersAction';
+
 
 export const defaultStateValue: IAppStateValue = {
   data: {

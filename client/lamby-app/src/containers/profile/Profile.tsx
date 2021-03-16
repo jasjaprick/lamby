@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import { IPlayer } from '../../interfaces/interfaces'
+import { IPlayer } from '../../interfaces/IPlayer'
 import {api} from '../../services/apiClient'
 import './Profile.scss'
 

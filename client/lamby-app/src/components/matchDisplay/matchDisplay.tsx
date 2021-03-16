@@ -6,7 +6,7 @@ import { Link, Router } from 'react-router-dom';
 import { reducer } from '../../context/reducer';
 import { AppStateContext, defaultStateValue } from '../../context/AppContext';
 import Player from '../player/Player';
-import { IPlayerPosition } from '../../interfaces/interfaces';
+import { IPlayerPosition } from '../../interfaces/IPlayerPosition';
 
 const instructionsArray: IPlayerPosition[] = [
   { code: 'GK', move: 'gk-sb', content: 'Goal keeper stay back' },

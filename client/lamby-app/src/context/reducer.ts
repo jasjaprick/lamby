@@ -1,12 +1,11 @@
-import {
-  IAppStateValue,
-  IUpdatePositionAction,
-  IRefreshMatchAction,
-  IRefreshPlayersAction,
-  IRefreshPositionsAction,
-  IRefreshPlayerName,
-  IRefreshInstruction,
-} from '../interfaces/interfaces';
+import {IAppStateValue } from '../interfaces/IAppStateValue';
+import {IUpdatePositionAction} from '../interfaces/IUpdatePositionAction';
+import {IRefreshMatchAction } from '../interfaces/IRefreshMatchAction';
+import {IRefreshPlayersAction } from '../interfaces/IRefreshPlayersAction';
+import {IRefreshPositionsAction } from '../interfaces/IRefreshPositionsAction';
+import {IRefreshPlayerName } from '../interfaces/IRefreshPlayerName';
+import {IRefreshInstruction} from '../interfaces/IRefreshInstruction';
+
 
 export const reducer = (
   state: IAppStateValue,
@@ -17,7 +16,7 @@ export const reducer = (
     | IRefreshPlayersAction
     | IRefreshPlayerName
     | IRefreshInstruction
-) => {
+) :IAppStateValue  => {
   switch (action.type) {
     case 'REFRESH_MATCH': {
       const match = action.payload.match;
