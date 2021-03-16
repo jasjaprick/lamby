@@ -1,4 +1,6 @@
-import { IMatch, IPlayer, IPosition } from '../interfaces/interfaces';
+import { IMatch} from '../interfaces/IMatch';
+import { IPlayer } from '../interfaces/IPlayer';
+import { IPosition } from '../interfaces/IPosition';
 
 const base_url = 'http://localhost:3001';
 
