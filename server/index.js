@@ -12,14 +12,17 @@ app.use(cors());
 app.use(express.json());
 app.use(router);
 
-module.exports = (async function () {
+(async function () {
   try {
-    await db.sequelize.sync();
+    await db.sequelize.sync({ force: true });
     console.log('DB is connected');
-    app.listen(PORT, () => {
-      console.log(`Server listening at http://localhost:${PORT} 🚀`);
-    });
   } catch (error) {
     console.log('Error while connecting to server', error);
   }
 })();
+
+let server = app.listen(PORT, () => {
+  console.log(`Server listening at http://localhost:${PORT} 🚀`);
+});
+
+module.exports = server;
