@@ -10,7 +10,7 @@ module.exports = {
     email: 'jose@gmail.com',
     firstName: 'jose',
     lastName: 'jose',
-    playerNumber: '2',
+    playerNumber: 2,
     defaultPosition: 'CB',
   },
   mockUser3: {

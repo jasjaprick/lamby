@@ -14,7 +14,6 @@ router.get('/user/:id', userController.getPlayerById);
 router.get('/user', userController.getPlayers);
 router.get('/current-user', userController.getCurrentUser);
 router.post('/user', userController.addUser);
-
 router.delete('/user', userController.deleteUser);
 
 router.post('/positions', matchPositionController.addMatchPosition);
