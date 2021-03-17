@@ -57,7 +57,7 @@ const MatchDisplay: React.FC = () => {
 
   const matchInfoUnknown = (
     <div className='center-div home'>
-      <h1>Match Info TBD</h1>
+      <h1 data-testid='edit-match'>Match Info TBD</h1>
     </div>
   );
 
