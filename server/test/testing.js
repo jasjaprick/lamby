@@ -26,8 +26,17 @@ describe('set up the enviroment', async () => {
       expect(res.statusCode).equal(200);
       expect(res.text).equal('[]');
     });
-    it('check if User`s table is emty (get)', async () => {
+    it('check if USER`S table is emty (get)', async () => {
       const res = await request(API).get('/user');
+      expect(res.statusCode).equal(200);
+      expect(res.text).equal('[]');
+    });
+    it('check if POSITIONS`S table is emty (get)  (get)', async () => {
+      await db.User.create(mocksUser.mockUser1);
+      await db.User.create(mocksUser.mockUser2);
+      await db.Match.create(mocksMatch.mockMatch2);
+      await db.Match.create(mocksMatch.mockMatch1);
+      const res = await request(API).get('/positions');
       expect(res.statusCode).equal(200);
       expect(res.text).equal('[]');
     });
