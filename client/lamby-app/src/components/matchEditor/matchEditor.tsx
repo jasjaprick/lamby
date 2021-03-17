@@ -14,8 +14,9 @@ const MatchEditor: React.FC = () => {
   const [position, setPosition] = useState('GK');
   const [playerId, setPlayerId] = useState(1);
   const [fade, setFade] = useState(true);
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
   const [finalInstruction, setFinalInstruction] = useState('gk-sb');
+ 
 
   const [instructions, setInstruction] = useState([
     { code: 'gk-sb', content: 'Goal keeper stay back' },
@@ -25,24 +26,14 @@ const MatchEditor: React.FC = () => {
   const dispatch = useStateDispatch();
   const { players, match } = data;
 
-
   const getCurrentPosition = () => {
     return positionCodes.filter((pos) => pos.code === position);
   };
   const currentPos: any[] = getCurrentPosition();
-
-console.log('cP', currentPos);
-
-  
-  
+ 
 
   // OPTIONS INSTANTIATION
   const playerOptions: JSX.Element[] = [];
- 
-  console.log('pl', players);
-  console.log('match', match);
-  console.log('playerOptions', playerOptions);
-  
 
   for (const player of players) {
     playerOptions.push(
@@ -64,27 +55,28 @@ console.log('cP', currentPos);
 
   const positionChange = (num) => {
     const pos = positionCodes[num];
-    const newPos = instructionSelector(pos.code, instructions, setInstruction);
     setPosition(pos.code);
+    const newPos = instructionSelector(pos.code, instructions, setInstruction);
+    console.log('pos.code', pos.code);
     setFinalInstruction(newPos.code);
   };
   
-  console.log('count', count)
-console.log('fade', fade);
-
 
   const oneUp = () => {
     setFade(true);
-    if (count === 10) setCount(0);
-    else setCount(count + 1);
-    positionChange(count);
+    let newCount = count +1;
+    if (newCount === positionCodes.length) newCount = 0;
+    setCount(newCount);
+    positionChange(newCount);
   };
 
   const oneDown = () => {
     setFade(true);
-    if (count === 0) setCount(10);
-    else setCount(count - 1);
-    positionChange(count);
+    let newCount = count -1;
+    if (newCount === -1) newCount = positionCodes.length -1;
+    setCount(newCount);
+    positionChange(newCount);
+   
   };
 
   const handlePlayerChange = (e) => {
@@ -147,7 +139,6 @@ console.log('fade', fade);
             <img src='/img/chevron-right.svg' alt='next' />
           </button>
         </div>
-
         <form id='match-form' className='player-form' onSubmit={handleSubmit}>
           <div className='select-wrapper'>
             <label htmlFor='player'>Player: </label>
