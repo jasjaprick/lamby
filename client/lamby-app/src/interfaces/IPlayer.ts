@@ -9,7 +9,11 @@ export interface IPlayer {
   matches: number;
   defaultPosition: string;
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
+=======
+  }
+>>>>>>> ea551e5a74732efd3a867966d5acf503c25a42f1
 =======
   }
 >>>>>>> ea551e5a74732efd3a867966d5acf503c25a42f1
