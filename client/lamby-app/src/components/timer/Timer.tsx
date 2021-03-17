@@ -16,7 +16,6 @@ const Timer: React.FC = () => {
   // Function to get the values for the timer
   const countDownTimer = (): ITimeLeft => {
     const matchTime: number = new Date(match.date).getTime();
-
     const now: number = Date.now();
     console.log('now-------', now);
     const diff: number = matchTime - now;
