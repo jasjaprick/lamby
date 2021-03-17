@@ -13,7 +13,7 @@ const Timer: React.FC = () => {
   // Context Hook
   const { data } = useContext(AppStateContext);
   const match = data.match;
-  console.log(match);
+  // console.log(match);
 
   // Function to get the values for the timer
   const countDownTimer = (): ITimeLeft => {

@@ -14,14 +14,7 @@ const timerMock = {
     formation: '4-3-3',
     venue: 'Old Trafford',
     date:"2021-04-14T15:00:00.000Z" ,
-<<<<<<< HEAD
-   
     }
-   
-  
-=======
-    }
->>>>>>> testing-back-end
   }
 }
 
@@ -29,19 +22,11 @@ const timerMock = {
 
 it('should log a user in', () => {
 const AppStateContext = React.createContext(timerMock);
-<<<<<<< HEAD
-    const { getByText } = render(
-=======
  render(
->>>>>>> testing-back-end
     < MyContext.Provider; value={data}>
     <Timer />
   </ MyContext.Provider>
   );
-<<<<<<< HEAD
-    
-=======
->>>>>>> testing-back-end
  })
 
 
