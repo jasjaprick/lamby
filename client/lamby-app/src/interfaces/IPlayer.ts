@@ -8,5 +8,4 @@ export interface IPlayer {
   assists: number;
   matches: number;
   defaultPosition: string;
-  selected: boolean
-}
+  }

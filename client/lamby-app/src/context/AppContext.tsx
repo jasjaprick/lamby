@@ -33,8 +33,7 @@ export const defaultStateValue: IAppStateValue = {
         assists: 0,
         matches: 0,
         defaultPosition: '', 
-        selected: false
-      },
+       },
     ],
     playerName: 'Select Position',
     instruction: 'By clicking on a dot'
