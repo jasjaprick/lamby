@@ -16,8 +16,8 @@ if (process.env.NODE_ENV !== 'test') {
   (async function () {
     try {
       await db.sequelize.sync();
-    } catch (error) {
       console.log(`${process.env.SQL_DATABASE} connected`);
+    } catch (error) {
       console.log('Error while connecting to server', error);
     }
   })();
