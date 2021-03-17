@@ -44,7 +44,7 @@ it('rendering right format', async () => {
   expect(secs >= 0 && secs <= 59).toBeTruthy();
 });
 
-it('rendering right time left', async () => {
+it('rendering right time left trying to check the time', async () => {
   const history = createMemoryHistory();
   const route = '/home';
   history.push(route);
