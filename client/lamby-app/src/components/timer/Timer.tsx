@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { AppStateContext } from '../../context/AppContext';
 
-
 interface ITimeLeft {
   days: number;
   hours: number;
@@ -13,12 +12,13 @@ const Timer: React.FC = () => {
   // Context Hook
   const { data } = useContext(AppStateContext);
   const match = data.match;
-  console.log(match);
 
   // Function to get the values for the timer
   const countDownTimer = (): ITimeLeft => {
     const matchTime: number = new Date(match.date).getTime();
-    const now: number = new Date().getTime();
+
+    const now: number = Date.now();
+    console.log('now-------', now);
     const diff: number = matchTime - now;
     let timeLeft = {
       days: 0,
