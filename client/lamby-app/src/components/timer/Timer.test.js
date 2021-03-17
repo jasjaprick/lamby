@@ -21,7 +21,20 @@ const timerMock = {
     },
   },
 };
-it('rendering right format', async () => {
+
+it('Time component is beinf rendered', () => {
+  const { getByTestId } = render(<Timer />);
+  const day = getByTestId('day');
+  expect(day).toBeInTheDocument();
+  const hour = getByTestId('hour');
+  expect(hour).toBeInTheDocument();
+  const mins = getByTestId('mins');
+  expect(mins).toBeInTheDocument();
+  const sec = getByTestId('sec');
+  expect(sec).toBeInTheDocument();
+});
+
+it('the time is being rendered in the right format', async () => {
   const history = createMemoryHistory();
   const route = '/home';
   history.push(route);
@@ -52,7 +65,7 @@ it('rendering right format', async () => {
   expect(secs >= 0 && secs <= 59).toBeTruthy();
 });
 
-it('rendering right time left trying to check the time', async () => {
+it('Timer depends on the Mache Date', async () => {
   const history = createMemoryHistory();
   const route = '/home';
   history.push(route);

@@ -17,7 +17,6 @@ const Timer: React.FC = () => {
   const countDownTimer = (): ITimeLeft => {
     const matchTime: number = new Date(match.date).getTime();
     const now: number = Date.now();
-    console.log('now-------', now);
     const diff: number = matchTime - now;
     let timeLeft = {
       days: 0,
