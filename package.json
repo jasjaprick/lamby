@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/gridwork-nl/lamby#readme",
   "dependencies": {
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "eslint": "^7.21.0",
+    "react-test-render": "^1.1.2"
   },
   "devDependencies": {
     "husky": "^5.1.3",
