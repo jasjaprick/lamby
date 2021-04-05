@@ -4,7 +4,8 @@
 
      Copy the link located in "code" ( https://github.com/CxGarcia/thesis-project.git )
 
-     By using the terminal go to the folder where the project will be store, then write "git clone https://github.com/CxGarcia/     thesis-project.git"
+     By using the terminal go to the folder where the project will be store, then write 
+     "git clone https://github.com/CxGarcia/thesis-project.git"
 
      Another option could be by using Download ZIP
 
@@ -47,17 +48,19 @@
       }
     ]
 
-    Lastly but no less important you must repeat this process on the client-side, creating a new file call .env
-     .env 
-     REACT_APP_SOCKET_HOST="URL base where the socket will send information, we used http://localhost" 
-     REACT_APP_SOCKET_PORT=""Socket Port, we used 3002"
-     REACT_APP_API_HOST="URL base where  Nest.js  will send information, we used http://localhost" 
-     REACT_APP_API_PORT="PORT where react will work, by default its 3001 but it can be changed"
+   Lastly but no less important you must repeat this process on the client-side, creating a new file call .env:
+   
+      .env 
+      REACT_APP_SOCKET_HOST="URL base where the socket will send information, we used http://localhost" 
+      REACT_APP_SOCKET_PORT=""Socket Port, we used 3002"
+      REACT_APP_API_HOST="URL base where  Nest.js  will send information, we used http://localhost" 
+      REACT_APP_API_PORT="PORT where react will work, by default its 3001 but it can be changed"
 
  ###Once you have the set up ready, there are different ways to make the software works, but keep in mind, it always will be done by the terminal.
 
-  the shortest way is by running  ###"npm run dev"  from the root folder, it will start the whole project, including client   and server.
+    the shortest way is by running  ###"npm run dev"  from the root folder, it will start the whole project, including client   and server.
 
   Another option is running the server and the client from different commands.
-  from the server folder can be run "npm start" and only the server will be working.
-  from the client folder can be run "npm start" and only the client will be working. 
+  
+    from the server folder can be run "npm start" and only the server will be working.
+    from the client folder can be run "npm start" and only the client will be working. 
