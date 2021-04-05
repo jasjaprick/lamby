@@ -1,4 +1,5 @@
-#PlantoPi
+#PlantoPi.
+
 ##In order to use this project, you must follow the next instructions:
 
  ###download the project: it can be done in different ways, for instance:
