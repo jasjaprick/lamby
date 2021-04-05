@@ -1,6 +1,6 @@
 .edit {
   position: absolute;
-  top: 32px;
+  top: 25px;
   right: 40px;
   z-index: 10;
 }
@@ -15,4 +15,8 @@
   margin: auto;
   position: relative;
   min-width: 400px;
+}
+
+.pt-20 {
+  padding-top: 20px;
 }

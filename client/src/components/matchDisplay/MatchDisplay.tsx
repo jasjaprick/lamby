@@ -88,21 +88,25 @@ const MatchDisplay: React.FC = () => {
     };
 
   const matchInfoKnown = (
-    <div className='pitch'>
-      {positions.map((pos) => {
-        for (let i = 0; i < instructionsArray.length; i++) {
-          if (pos.position === instructionsArray[i].code) {
-            return (
-              <Player
-                key={pos.userId}
-                player={pos.userId}
-                updateView={handlePlayerChange}
-                instruction={instructionsArray[i]}
-              />
-            );
+    <div>
+      <div className='pitch'>
+        {positions.map((pos) => {
+          for (let i = 0; i < instructionsArray.length; i++) {
+            if (pos.position === instructionsArray[i].code) {
+              return (
+                <Player
+                  key={pos.userId}
+                  player={pos.userId}
+                  updateView={handlePlayerChange}
+                  instruction={instructionsArray[i]}
+                />
+              );
+            }
           }
-        }
-      })}
+        })}
+      </div>
+      <h1 className='pt-20 text-center'>{lastName}</h1>
+      <p className='text-center'>{instruc}</p>
     </div>
   );
 
@@ -123,10 +127,8 @@ const MatchDisplay: React.FC = () => {
         </Link>
       </header>
       <div className='p-1'></div>
-      <div>{positions.length < 5 ? matchInfoUnknown : matchInfoKnown}</div>
+      <div>{positions.length < 10 ? matchInfoUnknown : matchInfoKnown}</div>
       <div className='p-1 text-center'>
-        <h1 className=''>{lastName}</h1>
-        <p className=''>{instruc}</p>
       </div>
     </div>
   );

@@ -107,7 +107,7 @@
     transform: translate(0px, 0px);
   }
   to {
-    transform: translate(15px, -85px);
+    transform: translate(15px, -180px);
   }
 }
 
@@ -116,7 +116,7 @@
     transform: translate(0px, 0px);
   }
   to {
-    transform: translate(-15px, -85px);
+    transform: translate(-15px, -180px);
   }
 }
 
@@ -138,7 +138,7 @@
   animation-fill-mode: forwards;
 }
 
-.lb-ja {
+.lb-sb {
   transition: 0.3s ease all;
   animation-name: leftBackCross;
   animation-timing-function: ease-in-out;

@@ -18,10 +18,10 @@ const Player: React.FC<IPlayerProp> = ({ player, instruction, updateView }) => {
 
   function sayHello() {
     var currentElement = document.querySelector(`.${instruction.code}`);
-    currentElement.classList.add(instruction.move)
+   if (currentElement) currentElement.classList.add(instruction.move);
 
     setTimeout(() => {
-       currentElement.classList.remove(instruction.move);
+       if (currentElement) currentElement.classList.remove(instruction.move);
     }, 3000)
   }
 

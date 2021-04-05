@@ -26,6 +26,7 @@ const AppStateProvider: React.FC = ({ children }) => {
         }
       })
       const matchPositions = await api.getMatchPositions()
+      console.log("matchPosition", matchPositions);
       dispatch({
         type: 'REFRESH_POSITIONS',
         payload: {

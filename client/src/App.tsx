@@ -13,10 +13,6 @@ import MatchEditor from './components/matchEditor/MatchEditor'
 
 function App () {
 
-
-
-  
-
   return (
     <AppStateProvider>
       <div className='App'>

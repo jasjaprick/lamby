@@ -39,17 +39,17 @@ const Profile: React.FC = () => {
             </div>
             <div className='p-1'>
               <p>MATCHES</p>
-              <p>{profile.matches}</p>
+              <p>28</p>
             </div>
           </div>
           <div className='profile__flex-row'>
             <div className='p-1'>
               <p>GOALS</p>
-              <p>{profile.goals}</p>
+              <p>16</p>
             </div>
             <div className='p-1'>
               <p>ASSISTS</p>
-              <p>{profile.assists}</p>
+              <p>10</p>
             </div>
           </div>
         </div>

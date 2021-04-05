@@ -13,7 +13,7 @@ const MatchEditor: React.FC = () => {
   const [fade, setFade] = useState(true);
   const [count, setCount] = useState(1);
   const [finalInstruction, setFinalInstruction] = useState('gk-sb');
-  const [instructions, setInstruction] = useState([
+  const [instructions, setInstruction] = useState<ICode[]>([
     { code: 'gk-sb', content: 'Goal keeper stay back' },
     { code: 'gk-jp', content: 'Goal keeper join play' },
   ]);
@@ -39,7 +39,7 @@ const MatchEditor: React.FC = () => {
   const currentPos: any[] = getCurrentPosition();
 
   const instructionSelector = (position: string): ICode => {
-    let instructions;
+    let instructions: any;
     switch (position) {
       case 'GK':
         instructions = [
@@ -60,7 +60,7 @@ const MatchEditor: React.FC = () => {
         ];
         break;
       case 'LB':
-         instructions = [
+        instructions = [
           { code: 'lb lb-sb', content: 'Cut inside' },
           { code: 'lb lb-ja', content: 'Give crosses' },
         ];
@@ -86,7 +86,7 @@ const MatchEditor: React.FC = () => {
       case 'CAM':
         instructions = [
           { code: 'cam cam-ot', content: 'Free roam' },
-          { code: 'cam cam-sb', content: 'Stay Back' },
+          { code: 'cam cam-sb', content: 'Stay wide' },
         ];
         break;
       case 'LW':
@@ -137,7 +137,7 @@ const MatchEditor: React.FC = () => {
 
 
 
-  const positionChange = (num) => {
+  const positionChange = (num: number) => {
     const pos = positionCodes[num];
     const newPos = instructionSelector(pos.code);
     setPosition(pos.code);
@@ -158,15 +158,15 @@ const MatchEditor: React.FC = () => {
     positionChange(count);
   };
 
-  const handlePlayerChange = (e) => {
+  const handlePlayerChange = (e: any) => {
     setPlayerId(e.target.value);
   };
 
-  const handleInstructionChange = (e) => {
+  const handleInstructionChange = (e: any) => {
     setFinalInstruction(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     const matchPosition: IPosition = {
       matchId: match.id,
@@ -185,11 +185,11 @@ const MatchEditor: React.FC = () => {
   };
 
  useEffect(() => {
-    const animation = document.querySelector('.selector__content--inner');
+    const animation: HTMLElement | null = document.querySelector('.selector__content--inner');
 
-    animation.addEventListener('animationend', () => {
-      setFade(false);
-    })
+   if (animation)  animation.addEventListener("animationend", () => {
+     setFade(false);
+   });
  }, [])
 
   // END OF CHANGE/SUBMIT HANDLERS
