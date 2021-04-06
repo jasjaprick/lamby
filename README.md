@@ -19,5 +19,5 @@ Testing was applied on the back-end and front end, using technologies including:
    -    mocha. 
    -    chai.
    -    supertest.
-   -    
+   -     
 Because of the testing implementation, it ensures the stability of the code in case it can be expanded or refactored.
