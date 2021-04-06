@@ -9,17 +9,17 @@ The app was built on top of React with Typescript and Sass on the front-End, and
 
  <h3>Front-End</h3>
  
-   - types/jest.
-   - react-test-render.
-   -  react-test-renderer.
-   -  testing-library.
-   -  jest-dom.
+   - types/jest
+   - react-test-render
+   -  react-test-renderer
+   -  testing-library
+   -  jest-dom
    
 <h3> Back-End</h3>
 
-   -    jest. 
-   -    mocha. 
-   -    chai.
-   -    supertest.
+   -    jest 
+   -    mocha 
+   -    chai
+   -    supertest
 
 Because of the testing implementation, it ensures the stability of the code in case it can be expanded or refactored.
