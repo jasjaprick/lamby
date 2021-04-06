@@ -8,13 +8,15 @@ The pain project was built by a colleague <a href="https://github.com/gridwork-n
 The app was built on top of React with Typescript and Sass on the front-End, and Node.js with express as a framework and PostgreSQL with Sequelize as the databases. Therefore, in order of guaranteeing the good functionality of the software, it was tested on both sides, back-end and front-end.
 
  <h3>Front-End</h3>
+ 
    - types/jest.
-   -  react-test-render.
+   - react-test-render.
    -  react-test-renderer.
    -  testing-library.
    -  jest-dom.
    
 <h3> Back-End</h3>
+
    -    jest. 
    -    mocha. 
    -    chai.
