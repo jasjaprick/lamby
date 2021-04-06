@@ -1,5 +1,4 @@
-
-Lamby
+#Lamby, Testing
 It is a project where the football coaches can find a solution to show to the players some tactic to apply during any game.
 As it has a dashboard  players will see how they must behave in offensive and defensive moments, avoiding misunderstandings that can make the difference between being victorious or not.
 
@@ -19,5 +18,5 @@ Testing was applied on the back-end and front end, using technologies including:
    -    mocha. 
    -    chai.
    -    supertest.
-   -     
+
 Because of the testing implementation, it ensures the stability of the code in case it can be expanded or refactored.
