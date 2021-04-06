@@ -34,9 +34,9 @@ exports.getNextMatch = async (req, res) => {
 exports.addMatch = async (req, res) => {
   const { awayTeam, date, venue } = req.body;
   try {
-    await db.Match.create({ awayTeam, date, venue });
+    const resp = await db.Match.create({ awayTeam, date, venue });
     res.status(201);
-    res.send('the match has been added');
+    res.send(resp);
   } catch (error) {
     res.status(500);
     res.send(error);
