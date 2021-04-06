@@ -26,4 +26,4 @@ The app was built on top of React with Typescript and Sass on the front-End, and
 Because of the testing implementation, it ensures the stability of the code in case it can be expanded or refactored.
 
 
-  <img src="https://github.com/gridwork-nl/lamby/raw/master/client/src/img/lamby-readme-title.gif">
+  <img src="https://raw.githubusercontent.com/gridwork-nl/lamby/master/client/src/img/mockup-lamby.jpg">
