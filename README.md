@@ -1,4 +1,5 @@
-#Lamby, Testing
+#Lamby, Testing.
+
 It is a project where the football coaches can find a solution to show to the players some tactic to apply during any game.
 As it has a dashboard  players will see how they must behave in offensive and defensive moments, avoiding misunderstandings that can make the difference between being victorious or not.
 
